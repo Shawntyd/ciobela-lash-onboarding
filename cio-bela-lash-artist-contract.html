@@ -1595,7 +1595,7 @@
   var _pdfDoc = null;
   var _sigName = '';
 
-  async function submitContract() {
+  async async function submitContract() {
     const sigName = document.getElementById('sig-name').value.trim();
     if (!sigName) { alert('Please type your full legal name to confirm your signature.'); return; }
     if (!hasSig) { alert('Please draw your signature in the signature box.'); return; }
