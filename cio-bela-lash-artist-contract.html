@@ -805,30 +805,23 @@
     <p style="font-size:12px;color:var(--mid);margin:16px 0 8px;letter-spacing:0.1em;text-transform:uppercase;">Select all that apply</p>
 
     <div class="services-grid">
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Brow Lamination</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Lash Lift &amp; Tint</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Chin Wax</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Full Face Wax</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Underarm Wax</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Bikini Wax</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Hard Gel (Builder)</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Soft Gel / Gel-X Extensions</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Dip Powder (SNS)</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Polygel / Acrygel</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Press-On Application</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Nail Art (2D)</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Nail Art (3D)</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Chrome / Mirror Powder</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Nail Stamping</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Encapsulated Designs</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Ombre / Baby Boomer</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> IBX Treatment</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Paraffin Treatment</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Nail Repair</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Soak-Off / Removal Services</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Tandem Mani-Pedi</label>
-      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Bridal / Special Event Sets</label>
+      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Classic Full Set</label>
+      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Classic Fill</label>
+      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Hybrid Full Set</label>
+      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Hybrid Fill</label>
+      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Volume Full Set</label>
+      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Volume Fill</label>
+      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Mega Volume Full Set</label>
+      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Mega Volume Fill</label>
       <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Wispy / Kim K Set</label>
+      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Wet Look / Glossy Set</label>
+      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Cat Eye Set</label>
+      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Natural / Textured Set</label>
+      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Lash Removal</label>
+      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Lash Lift &amp; Tint</label>
+      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Brow Lamination</label>
+      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Brow Tint</label>
+      <label class="service-chip" onclick="toggleChip(this)"><input type="checkbox"> Lash &amp; Brow Combo</label>
     </div>
 
     <div class="field-group full" style="margin-top:20px;">
@@ -864,69 +857,96 @@
 
   <!-- ════════════════════════════════ PAGE 5 — DATA & TRADE SECRETS ════════════════════════════════ -->
 
-  <!-- ══════════ PAGE 5 — ARTIST PROFILE & BIO ══════════ -->
+  <!-- ════════════════ PAGE 5 — ARTIST PROFILE & BIO ════════════════ -->
   <div class="page" id="page-5">
     <div class="page-header">
-      <div class="section-tag">Artist Profile</div>
-      <h2 class="section-title">Your Profile<br><em>& Bio</em></h2>
-      <p class="section-desc">This information builds your public profile on our website and marketing materials. Be authentic — clients connect with the real you.</p>
+      <div class="section-tag">Your Profile</div>
+      <h1 class="page-title">Artist Profile &amp; Bio</h1>
+      <p class="page-subtitle">This builds your public profile on our website and marketing materials. Be authentic — clients connect with the real you.</p>
     </div>
 
-    <div class="field-block">
-      <label class="field-label">What name do you want displayed on your profile? <span class="req">*</span></label>
-      <input type="text" id="prof-display-name" class="field-input" placeholder="e.g. Jasmine T. | Lashes by Jas | Jasmine Torres">
-    </div>
-    <div class="field-block">
-      <label class="field-label">How many years have you been doing lash extensions?</label>
-      <input type="text" id="prof-experience" class="field-input" placeholder="e.g. 3 years, just certified, 7+ years">
-    </div>
-    <div class="field-block">
-      <label class="field-label">What got you into lash extensions in the first place?</label>
-      <textarea id="prof-origin" class="field-input" rows="3" placeholder="Your origin story — clients love this..."></textarea>
-    </div>
-    <div class="field-block">
-      <label class="field-label">Describe your lash style or approach in 3 words.</label>
-      <input type="text" id="prof-style" class="field-input" placeholder="e.g. Precise, wispy, detailed — or bold, clean, luxurious">
-    </div>
-    <div class="field-block">
-      <label class="field-label">What sets your lash work apart from other artists?</label>
-      <textarea id="prof-differentiator" class="field-input" rows="3" placeholder="What do clients always compliment or come back for?"></textarea>
-    </div>
-    <div class="field-block">
-      <label class="field-label">Describe your dream lash client.</label>
-      <textarea id="prof-dream-client" class="field-input" rows="3" placeholder="e.g. Someone who books fills every 2–3 weeks, trusts my judgment on curl and length, and refers their friends..."></textarea>
-    </div>
-    <div class="field-block">
-      <label class="field-label">What is your appointment vibe?</label>
-      <div class="radio-group">
-        <label class="radio-option"><input type="radio" name="appt-vibe" value="chatty"><span class="radio-label">Chatty &amp; warm — we catch up the whole appointment</span></label>
-        <label class="radio-option"><input type="radio" name="appt-vibe" value="focused"><span class="radio-label">Calm &amp; quiet — clients come to relax, sometimes even nap</span></label>
-        <label class="radio-option"><input type="radio" name="appt-vibe" value="mix"><span class="radio-label">A mix — I read the room and match your energy</span></label>
+    <div class="field-group full">
+      <div class="field">
+        <label>Display Name for Your Profile <span style="color:var(--alert)">*</span></label>
+        <input type="text" id="prof-display-name" placeholder="e.g. Jasmine T. | Lashes by Jas | Jasmine Torres">
       </div>
     </div>
-    <div class="field-block">
-      <label class="field-label">What are your goals for your first 90 days at Cio Bela?</label>
-      <textarea id="prof-goals" class="field-input" rows="3" placeholder="Booking targets, what you hope to build, how many clients you want..."></textarea>
-    </div>
-    <div class="field-block">
-      <label class="field-label">Do you consent to having your work, name, and likeness featured on Cio Bela&apos;s social media and website? <span class="req">*</span></label>
-      <div class="radio-group">
-        <label class="radio-option"><input type="radio" name="social-consent" value="yes"><span class="radio-label">Yes — I consent to being featured on Cio Bela&apos;s social media and website</span></label>
-        <label class="radio-option"><input type="radio" name="social-consent" value="no"><span class="radio-label">No — I do not consent at this time</span></label>
-        <label class="radio-option"><input type="radio" name="social-consent" value="partial"><span class="radio-label">Partially — my lash work yes, my face or full name no</span></label>
+    <div class="field-group full">
+      <div class="field">
+        <label>Years of Experience with Lash Extensions</label>
+        <input type="text" id="prof-experience" placeholder="e.g. 3 years, just certified, 7+ years">
       </div>
     </div>
-    <div class="field-block">
-      <label class="field-label">Do you have a professional headshot or brand photo?</label>
-      <div class="radio-group">
-        <label class="radio-option"><input type="radio" name="headshot" value="yes"><span class="radio-label">Yes — I will text or email it to you</span></label>
-        <label class="radio-option"><input type="radio" name="headshot" value="no"><span class="radio-label">No — I need help getting one taken</span></label>
-        <label class="radio-option"><input type="radio" name="headshot" value="soon"><span class="radio-label">Not yet, but I am working on it</span></label>
+    <div class="field-group full">
+      <div class="field">
+        <label>What got you into lash extensions?</label>
+        <textarea id="prof-origin" placeholder="Your origin story — clients love this..."></textarea>
       </div>
     </div>
-    <div class="field-block">
-      <label class="field-label">Anything else you would like us to know?</label>
-      <textarea id="prof-notes" class="field-input" rows="3" placeholder="Questions, preferences, concerns, ideas — have at it..."></textarea>
+    <div class="field-group full">
+      <div class="field">
+        <label>Describe your lash style in 3 words.</label>
+        <input type="text" id="prof-style" placeholder="e.g. Precise, wispy, detailed — or bold, clean, luxurious">
+      </div>
+    </div>
+    <div class="field-group full">
+      <div class="field">
+        <label>What sets your lash work apart from other artists?</label>
+        <textarea id="prof-differentiator" placeholder="What do clients always compliment or come back for?"></textarea>
+      </div>
+    </div>
+    <div class="field-group full">
+      <div class="field">
+        <label>Describe your dream lash client.</label>
+        <textarea id="prof-dream-client" placeholder="e.g. Someone who books fills every 2–3 weeks, trusts my judgment on curl and length, and refers their friends..."></textarea>
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-head"><span>Appointment Vibe</span></div>
+      <div class="clause-body">
+        <div class="radio-group">
+          <label class="radio-opt"><input type="radio" name="appt-vibe" value="chatty"> Chatty &amp; warm — we catch up the whole appointment</label>
+          <label class="radio-opt"><input type="radio" name="appt-vibe" value="focused"> Calm &amp; quiet — clients come to relax, sometimes even nap</label>
+          <label class="radio-opt"><input type="radio" name="appt-vibe" value="mix"> A mix — I read the room and match your energy</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-group full">
+      <div class="field">
+        <label>Goals for your first 90 days at Cio Bela</label>
+        <textarea id="prof-goals" placeholder="Booking targets, what you hope to build, how many clients you want..."></textarea>
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-head"><span>Social Media &amp; Marketing Consent</span></div>
+      <div class="clause-body">
+        <div class="radio-group">
+          <label class="radio-opt"><input type="radio" name="social-consent" value="yes"> Yes — I consent to being featured on Cio Bela&apos;s social media and website</label>
+          <label class="radio-opt"><input type="radio" name="social-consent" value="no"> No — I do not consent at this time</label>
+          <label class="radio-opt"><input type="radio" name="social-consent" value="partial"> Partially — my lash work yes, my face or full name no</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="clause-card">
+      <div class="clause-head"><span>Professional Headshot</span></div>
+      <div class="clause-body">
+        <div class="radio-group">
+          <label class="radio-opt"><input type="radio" name="headshot" value="yes"> Yes — I will text or email it to you</label>
+          <label class="radio-opt"><input type="radio" name="headshot" value="no"> No — I need help getting one taken</label>
+          <label class="radio-opt"><input type="radio" name="headshot" value="soon"> Not yet, but I am working on it</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-group full">
+      <div class="field">
+        <label>Anything else you would like us to know?</label>
+        <textarea id="prof-notes" placeholder="Questions, preferences, concerns, ideas — have at it..."></textarea>
+      </div>
     </div>
 
     <div class="btn-row">
@@ -935,56 +955,53 @@
     </div>
   </div>
 
-  <!-- ══════════ PAGE 6 — STUDIO ACKNOWLEDGMENTS ══════════ -->
+    <!-- ════════════════ PAGE 6 — STUDIO ACKNOWLEDGMENTS ════════════════ -->
   <div class="page" id="page-6">
     <div class="page-header">
       <div class="section-tag">Studio Standards</div>
-      <h2 class="section-title">Studio<br><em>Acknowledgments</em></h2>
-      <p class="section-desc">Please read and confirm your commitment to maintaining a professional, safe, and compliant lash studio environment at Cio Bela.</p>
+      <h1 class="page-title">Studio Acknowledgments</h1>
+      <p class="page-subtitle">Please read and confirm your commitment to maintaining a professional, safe, and compliant lash studio at Cio Bela.</p>
     </div>
 
-    <div class="clause-head"><span>6.1 — Shared Studio Stewardship</span></div>
-    <div class="clause-body">
-      <ul class="clause-list">
-        <li><strong>Station Presentation:</strong> Your designated station must remain organized, clean, and visually aligned with Cio Bela brand standards at all times.</li>
-        <li><strong>Client Privacy:</strong> Lash services are intimate. Every client must feel comfortable and their privacy must be protected throughout their appointment.</li>
-        <li><strong>Common Areas:</strong> Shared areas are to be left cleaner than you found them.</li>
-        <li><strong>Last Artist Out:</strong> If you are the last person in the building, all lights off, doors locked, and shared equipment powered down before you leave.</li>
-        <li><strong>Friends &amp; Family:</strong> Guests are not permitted to occupy the salon unless they are present to receive a service.</li>
-        <li><strong>Cancellations:</strong> You are solely responsible for managing your schedule and communicating with your clients. Repeated last-minute cancellations are grounds for lease review.</li>
-      </ul>
+    <div class="clause-card">
+      <div class="clause-head"><span>6.1 — Shared Studio Stewardship</span></div>
+      <div class="clause-body">
+        <ul>
+          <li><strong>Station Presentation:</strong> Your station must remain organized, clean, and visually aligned with Cio Bela brand standards at all times.</li>
+          <li><strong>Client Privacy:</strong> Lash services are intimate. Every client must feel comfortable and their privacy protected throughout their appointment.</li>
+          <li><strong>Common Areas:</strong> Shared areas are to be left cleaner than you found them.</li>
+          <li><strong>Last Artist Out:</strong> All lights off, doors locked, shared equipment powered down before you leave.</li>
+          <li><strong>Guests:</strong> Friends and family are not permitted to occupy the salon unless present to receive a service.</li>
+          <li><strong>Cancellations:</strong> You are solely responsible for managing your schedule and client communications. Repeated last-minute cancellations are grounds for lease review.</li>
+        </ul>
+      </div>
+      <label class="ack-wrap"><input type="checkbox" id="ack-studio"> <span>I have read and agree to the Shared Studio Stewardship standards. I will maintain my station and conduct in accordance with Cio Bela professional standards.</span></label>
     </div>
-    <label class="acknowledge-wrap">
-      <input type="checkbox" id="ack-studio">
-      <span class="acknowledge-text">I have read and agree to the Shared Studio Stewardship standards. I will maintain my station and conduct in accordance with Cio Bela professional standards.</span>
-    </label>
 
-    <div class="clause-head" style="margin-top:28px;"><span>6.2 — Daily Opening &amp; Closing Checklist</span></div>
-    <div class="clause-body">
-      <p><strong>Opening:</strong> Turn on station lighting. Lay out sanitized lash tile/palette. Verify gel pads, tape, lash trays, adhesive, and disposables are stocked. Open adhesive fresh or confirm working dot is within correct temperature range.</p>
-      <p style="margin-top:8px;"><strong>Between Every Client:</strong> Dispose of all single-use items. Fully sanitize tweezers and all reusable implements. Replace lash tile/palette. Wash hands. Refresh adhesive dot — never reuse a dot more than 20 minutes old.</p>
-      <p style="margin-top:8px;"><strong>Closing:</strong> Cap all adhesive tightly and store in a cool, dry, airtight container. Full sanitation wipe-down of station and lash bed. Dispose of waste. Turn off station light.</p>
+    <div class="clause-card">
+      <div class="clause-head"><span>6.2 — Daily Opening &amp; Closing Checklist</span></div>
+      <div class="clause-body">
+        <p><strong>Opening:</strong> Turn on station lighting. Lay out sanitized lash tile/palette. Verify gel pads, tape, lash trays, adhesive, and disposables are stocked. Confirm adhesive dot is fresh and within correct temperature range.</p>
+        <p style="margin-top:10px;"><strong>Between Every Client:</strong> Dispose of all single-use items. Fully sanitize tweezers and all reusable implements. Replace lash tile/palette. Wash hands. Refresh adhesive dot — never reuse a dot more than 20 minutes old.</p>
+        <p style="margin-top:10px;"><strong>Closing:</strong> Cap all adhesive tightly and store in a cool, dry, airtight container. Full sanitation wipe-down of station and lash bed. Dispose of waste. Turn off station light.</p>
+      </div>
+      <label class="ack-wrap"><input type="checkbox" id="ack-checklist"> <span>I agree to follow the Daily Opening &amp; Closing Checklist to ensure our shared studio remains professional, sanitary, and welcoming for every client and artist.</span></label>
     </div>
-    <label class="acknowledge-wrap">
-      <input type="checkbox" id="ack-checklist">
-      <span class="acknowledge-text">I agree to follow the Daily Opening &amp; Closing Checklist to ensure our shared studio remains professional, sanitary, and welcoming for every client and artist.</span>
-    </label>
 
-    <div class="clause-head" style="margin-top:28px;"><span>6.3 — Texas Safety &amp; Compliance (Lash-Specific)</span></div>
-    <div class="clause-body">
-      <ul class="clause-list">
-        <li><strong>License Display:</strong> Active Texas Cosmetology or Esthetician license must be displayed at your station in public view at all times.</li>
-        <li><strong>Client Intake:</strong> Every new client must complete a signed Client Intake &amp; Allergy Waiver before their first appointment.</li>
-        <li><strong>Adhesive Safety:</strong> Cyanoacrylate must be handled per manufacturer guidelines. Adhesive dots replaced every 15–20 minutes. Never apply in amounts that risk skin or eye contact.</li>
-        <li><strong>Isolation Standard:</strong> Every natural lash must be individually isolated prior to extension application. Stickies are a safety violation and grounds for formal review.</li>
-        <li><strong>Ventilation:</strong> Adequate ventilation must be maintained at your station at all times during adhesive use. N95 masks strongly recommended.</li>
-        <li><strong>Eye Injury Protocol:</strong> If adhesive contacts a client&apos;s eye, flush immediately with clean water for 15 minutes and refer to emergency care. Notify Cio Bela management immediately.</li>
-      </ul>
+    <div class="clause-card">
+      <div class="clause-head"><span>6.3 — Texas Safety &amp; Compliance (Lash-Specific)</span></div>
+      <div class="clause-body">
+        <ul>
+          <li><strong>License Display:</strong> Active Texas Cosmetology or Esthetician license must be displayed at your station in public view at all times.</li>
+          <li><strong>Client Intake:</strong> Every new client must complete a signed Client Intake &amp; Allergy Waiver before their first appointment.</li>
+          <li><strong>Adhesive Safety:</strong> Cyanoacrylate must be handled per manufacturer guidelines. Adhesive dots replaced every 15–20 minutes. Never apply in amounts that risk skin or eye contact.</li>
+          <li><strong>Isolation Standard:</strong> Every natural lash must be individually isolated prior to extension application. Stickies are a safety violation and grounds for formal review.</li>
+          <li><strong>Ventilation:</strong> Adequate ventilation must be maintained at your station during adhesive use. N95 masks strongly recommended.</li>
+          <li><strong>Eye Injury Protocol:</strong> If adhesive contacts a client&apos;s eye, flush immediately with clean water for 15 minutes and refer to emergency care. Notify Cio Bela management immediately.</li>
+        </ul>
+      </div>
+      <label class="ack-wrap"><input type="checkbox" id="ack-safety"> <span>I acknowledge that I have reviewed the Texas Safety &amp; Compliance Protocols for Lash Extension Services and agree to maintain my workspace and professional practices in strict accordance with all protocols listed above.</span></label>
     </div>
-    <label class="acknowledge-wrap">
-      <input type="checkbox" id="ack-safety">
-      <span class="acknowledge-text">I acknowledge that I have reviewed the Texas Safety &amp; Compliance Protocols for Lash Extension Services and agree to maintain my workspace and professional practices in strict accordance with all protocols listed above.</span>
-    </label>
 
     <div class="btn-row">
       <button class="btn-secondary" onclick="goTo(5)">&larr; Back</button>
@@ -992,7 +1009,7 @@
     </div>
   </div>
 
-  <div class="page" id="page-7">
+    <div class="page" id="page-7">
     <div class="page-header">
       <div class="section-tag">Section V</div>
       <h1 class="page-title">Data Sovereignty &amp; Trade Secrets</h1>
