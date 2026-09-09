@@ -851,12 +851,155 @@
 
     <div class="btn-row">
       <button class="btn-secondary" onclick="goTo(3)">&larr; Back</button>
-      <button class="btn-primary" onclick="goTo(5)">Continue &rarr;</button>
+      <button class="btn-primary" onclick="goTo(7)">Continue &rarr;</button>
     </div>
   </div>
 
   <!-- ════════════════════════════════ PAGE 5 — DATA & TRADE SECRETS ════════════════════════════════ -->
-  <div class="page" id="page-5">
+  
+  <!-- ══════════════ PAGE 5 — ARTIST PROFILE & BIO ══════════════ -->
+  <div class="page-section" id="page-5">
+    <div class="clause-head-major"><span>Section V — Artist Profile &amp; Bio</span></div>
+    <p class="clause-intro">This information builds your public profile on our website and marketing materials. Be authentic — clients connect with the real you.</p>
+
+    <div class="form-group">
+      <label class="form-label">What name do you want displayed on your profile? <span class="req">*</span></label>
+      <input type="text" id="prof-display-name" class="form-input" placeholder="e.g. Jasmine T. | Lashes by Jas | Jasmine Torres">
+    </div>
+    <div class="form-group">
+      <label class="form-label">How many years have you been doing lash extensions?</label>
+      <input type="text" id="prof-experience" class="form-input" placeholder="e.g. 3 years, just certified, 7+ years">
+    </div>
+    <div class="form-group">
+      <label class="form-label">What got you into lash extensions in the first place?</label>
+      <textarea id="prof-origin" class="form-input" rows="3" placeholder="Your origin story — clients love this..."></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Describe your lash style or approach in 3 words.</label>
+      <input type="text" id="prof-style" class="form-input" placeholder="e.g. Precise, wispy, detailed — or bold, clean, luxurious">
+    </div>
+    <div class="form-group">
+      <label class="form-label">What sets your lash work apart from other artists?</label>
+      <textarea id="prof-differentiator" class="form-input" rows="3" placeholder="What do clients always compliment or come back for?"></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Describe your dream lash client.</label>
+      <textarea id="prof-dream-client" class="form-input" rows="3" placeholder="e.g. Someone who books fills every 2–3 weeks, trusts my judgment on curl and length, and refers their friends..."></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">What is your appointment vibe?</label>
+      <div class="radio-stack">
+        <label class="radio-row"><input type="radio" name="appt-vibe" value="chatty"> <span>Chatty &amp; warm — we'll catch up through the whole appointment</span></label>
+        <label class="radio-row"><input type="radio" name="appt-vibe" value="focused"> <span>Calm &amp; quiet — clients come to relax, sometimes even nap</span></label>
+        <label class="radio-row"><input type="radio" name="appt-vibe" value="mix"> <span>A mix — I read the room and match your energy</span></label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">What are your goals for your first 90 days at Cio Bela?</label>
+      <textarea id="prof-goals" class="form-input" rows="3" placeholder="Booking targets, what you hope to build, how many clients you want..."></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Do you consent to having your work, name, and likeness featured on Cio Bela's social media and website? <span class="req">*</span></label>
+      <div class="radio-stack">
+        <label class="radio-row"><input type="radio" name="social-consent" value="yes"> <span>Yes — I consent to being featured on Cio Bela's social media and website</span></label>
+        <label class="radio-row"><input type="radio" name="social-consent" value="no"> <span>No — I do not consent at this time</span></label>
+        <label class="radio-row"><input type="radio" name="social-consent" value="partial"> <span>Partially — I consent to my lash work being featured but not my face or full name</span></label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Do you have a professional headshot or brand photo?</label>
+      <div class="radio-stack">
+        <label class="radio-row"><input type="radio" name="headshot" value="yes"> <span>Yes — I will text or email it to you</span></label>
+        <label class="radio-row"><input type="radio" name="headshot" value="no"> <span>No — I need help getting one taken</span></label>
+        <label class="radio-row"><input type="radio" name="headshot" value="soon"> <span>Not yet, but I am working on it</span></label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Anything else you would like us to know?</label>
+      <textarea id="prof-notes" class="form-input" rows="3" placeholder="Questions, preferences, concerns, ideas — have at it..."></textarea>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-secondary" onclick="goTo(4)">&larr; Back</button>
+      <button class="btn-primary" onclick="goTo(6)">Continue &rarr;</button>
+    </div>
+  </div>
+
+  <!-- ══════════════ PAGE 6 — STUDIO ACKNOWLEDGMENTS ══════════════ -->
+  <div class="page-section" id="page-6">
+    <div class="clause-head-major"><span>Section VI — Studio Acknowledgments</span></div>
+    <p class="clause-intro">The following acknowledgments confirm your commitment to maintaining a professional, safe, and compliant lash studio environment at Cio Bela.</p>
+
+    <div class="clause-head"><span>6.1 — Shared Studio Stewardship</span></div>
+    <div class="clause-body">
+      <p>As a Cio Bela lash artist, you agree to uphold the following studio standards at all times:</p>
+      <ul class="clause-list">
+        <li><strong>Station Presentation:</strong> Your designated station must remain organized, clean, and visually aligned with Cio Bela brand standards at all times.</li>
+        <li><strong>Client Privacy:</strong> Lash services are intimate. You commit to ensuring every client feels comfortable and their privacy is protected throughout their appointment.</li>
+        <li><strong>Common Areas:</strong> Shared areas (restroom, waiting area, break room) are to be left cleaner than you found them.</li>
+        <li><strong>Last Artist Out:</strong> If you are the last person in the building, all lights are off, doors are locked, and shared equipment is powered down before you leave.</li>
+        <li><strong>Friends &amp; Family:</strong> Guests are not permitted to occupy the salon unless they are present to receive a service.</li>
+        <li><strong>Cancellations:</strong> As an independent business owner, you are solely responsible for managing your schedule and communicating with your clients. Repeated no-shows or last-minute cancellations reflect on the salon and are grounds for lease review.</li>
+      </ul>
+    </div>
+    <label class="checkbox-row">
+      <input type="checkbox" id="ack-studio">
+      <span class="checkbox-text">I have read and agree to the Shared Studio Stewardship standards above. I will maintain my station and conduct in accordance with Cio Bela professional standards.</span>
+    </label>
+
+    <div class="clause-head" style="margin-top:28px;"><span>6.2 — Daily Opening &amp; Closing Checklist</span></div>
+    <div class="clause-body">
+      <p><strong>Opening:</strong></p>
+      <ul class="clause-list">
+        <li>Turn on station lighting and set appropriate background music.</li>
+        <li>Lay out a fresh, sanitized lash tile or palette and ensure all implements are disinfected and ready.</li>
+        <li>Verify gel pads, tape, lash trays, adhesive, and disposables are stocked for the day.</li>
+        <li>Open adhesive fresh or confirm the working dot is within the correct temperature and humidity range.</li>
+      </ul>
+      <p style="margin-top:10px;"><strong>Between Every Client:</strong></p>
+      <ul class="clause-list">
+        <li>Dispose of all single-use items immediately (gel pads, micro-brushes, tape).</li>
+        <li>Fully sanitize tweezers and all reusable implements with an EPA-registered disinfectant.</li>
+        <li>Replace the lash tile/palette or clean the jade stone.</li>
+        <li>Wash hands or use 70%+ alcohol sanitizer before the next client.</li>
+        <li>Refresh adhesive dot — never reuse a dot more than 20 minutes old.</li>
+      </ul>
+      <p style="margin-top:10px;"><strong>Closing:</strong></p>
+      <ul class="clause-list">
+        <li>Cap all adhesive bottles tightly and store in a cool, dry, airtight container.</li>
+        <li>Full sanitation wipe-down of station surface, lash bed, and surrounding area.</li>
+        <li>Dispose of waste. Turn off station light. Ensure station is client-ready for next visit.</li>
+      </ul>
+    </div>
+    <label class="checkbox-row">
+      <input type="checkbox" id="ack-checklist">
+      <span class="checkbox-text">I agree to follow the Daily Opening &amp; Closing Checklist to ensure our shared studio remains professional, sanitary, and welcoming for every client and artist.</span>
+    </label>
+
+    <div class="clause-head" style="margin-top:28px;"><span>6.3 — Texas Safety &amp; Compliance (Lash-Specific)</span></div>
+    <div class="clause-body">
+      <ul class="clause-list">
+        <li><strong>License Display:</strong> Your active Texas Cosmetology or Esthetician license must be displayed at your station in public view at all times.</li>
+        <li><strong>Client Intake:</strong> Every new client must complete a signed Client Intake &amp; Allergy Waiver before their first appointment. Clients reporting sensitivity changes must re-sign.</li>
+        <li><strong>Adhesive Safety:</strong> Cyanoacrylate adhesive must be handled per manufacturer guidelines. Adhesive dots must be replaced every 15–20 minutes. Never apply adhesive in amounts that risk skin or eye contact.</li>
+        <li><strong>Isolation Standard:</strong> Every natural lash must be individually isolated prior to extension application. Stickies (lash-to-lash bonding) are a safety violation and a grounds for formal review.</li>
+        <li><strong>Ventilation:</strong> Adequate ventilation must be maintained at your station at all times during adhesive use. N95 masks are strongly recommended.</li>
+        <li><strong>Sanitation:</strong> All reusable implements must be fully disinfected with an EPA-registered, TDLR-approved disinfectant between every client. Single-use items are disposed of after each client without exception.</li>
+        <li><strong>Eye Injury Protocol:</strong> If adhesive contacts a client's eye or skin, flush immediately with clean water for 15 minutes and refer to emergency care. Document the incident and notify Cio Bela management immediately.</li>
+      </ul>
+    </div>
+    <label class="checkbox-row">
+      <input type="checkbox" id="ack-safety">
+      <span class="checkbox-text">I acknowledge that I have reviewed the Texas Safety &amp; Compliance Protocols for Lash Extension Services. I agree to maintain my workspace and professional practices in strict accordance with TDLR Health &amp; Safety standards and all lash-specific protocols listed above.</span>
+    </label>
+
+    <div class="btn-row">
+      <button class="btn-secondary" onclick="goTo(5)">&larr; Back</button>
+      <button class="btn-primary" onclick="goTo(7)">Continue &rarr;</button>
+    </div>
+  </div>
+
+<div class="page" id="page-7">
     <div class="page-header">
       <div class="section-tag">Section V</div>
       <h1 class="page-title">Data Sovereignty &amp; Trade Secrets</h1>
@@ -912,12 +1055,12 @@
 
     <div class="btn-row">
       <button class="btn-secondary" onclick="goTo(4)">&larr; Back</button>
-      <button class="btn-primary" onclick="goTo(6)">Continue &rarr;</button>
+      <button class="btn-primary" onclick="goTo(8)">Continue &rarr;</button>
     </div>
   </div>
 
   <!-- ════════════════════════════════ PAGE 6 — LIABILITY ════════════════════════════════ -->
-  <div class="page" id="page-6">
+  <div class="page" id="page-8">
     <div class="page-header">
       <div class="section-tag">Section VI</div>
       <h1 class="page-title">Liability &amp; Occupational Risk</h1>
@@ -961,13 +1104,13 @@
     </div>
 
     <div class="btn-row">
-      <button class="btn-secondary" onclick="goTo(5)">&larr; Back</button>
-      <button class="btn-primary" onclick="goTo(7)">Continue &rarr;</button>
+      <button class="btn-secondary" onclick="goTo(7)">&larr; Back</button>
+      <button class="btn-primary" onclick="goTo(9)">Continue &rarr;</button>
     </div>
   </div>
 
   <!-- ════════════════════════════════ PAGE 7 — TERMINATION ════════════════════════════════ -->
-  <div class="page" id="page-7">
+  <div class="page" id="page-9">
     <div class="page-header">
       <div class="section-tag">Section VII</div>
       <h1 class="page-title">Termination &amp; Lockout Rights</h1>
@@ -1031,13 +1174,13 @@
     </div>
 
     <div class="btn-row">
-      <button class="btn-secondary" onclick="goTo(6)">&larr; Back</button>
-      <button class="btn-primary" onclick="goTo(8)">Continue &rarr;</button>
+      <button class="btn-secondary" onclick="goTo(8)">&larr; Back</button>
+      <button class="btn-primary" onclick="goTo(10)">Continue &rarr;</button>
     </div>
   </div>
 
   <!-- ════════════════════════════════ PAGE 8 — SIGNATURE ════════════════════════════════ -->
-  <div class="page" id="page-8">
+  <div class="page" id="page-10">
     <div class="page-header">
       <div class="section-tag">Section VIII — Final Step</div>
       <h1 class="page-title">Review &amp; Sign</h1>
@@ -1083,7 +1226,7 @@
     </div>
 
     <div class="btn-row">
-      <button class="btn-secondary" onclick="goTo(7)">&larr; Back</button>
+      <button class="btn-secondary" onclick="goTo(9)">&larr; Back</button>
       <button class="btn-primary" onclick="submitContract()">Submit &amp; Generate PDF</button>
     </div>
   </div>
@@ -1497,7 +1640,57 @@
       // ── PAGE 4 — SECTIONS V & VI ──
       newPage();
       doc.setFontSize(14); doc.setFont('helvetica','bold'); doc.setTextColor(...ink);
-      doc.text('SECTION V — DATA SOVEREIGNTY & TRADE SECRETS', M, y); y += 10;
+      
+      // ════ PDF: ARTIST PROFILE (new Section V) ════
+      doc.addPage(); y = 20;
+      doc.setFontSize(8); doc.setTextColor(...gold); doc.setFont('helvetica','bold');
+      doc.text('SECTION V — ARTIST PROFILE & BIO', M, y); y += 3;
+      doc.setDrawColor(...gold); doc.setLineWidth(0.3); doc.line(M, y, W-M, y); y += 8;
+
+      const gvP = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+      const grP = nm => { const el = document.querySelector('input[name="'+nm+'"]:checked'); return el ? el.value : ''; };
+      function pdfF(label, val) {
+        if (!val || !val.trim()) return;
+        if (y > 260) { doc.addPage(); y = 20; }
+        doc.setFontSize(7); doc.setTextColor(...mid); doc.setFont('helvetica','normal');
+        doc.text(label.toUpperCase(), M, y); y += 4;
+        doc.setFontSize(9); doc.setTextColor(...ink);
+        doc.splitTextToSize(val, CW).forEach(l => { if (y>270){doc.addPage();y=20;} doc.text(l,M,y); y+=5; });
+        y += 3;
+      }
+      pdfF('Display Name', gvP('prof-display-name'));
+      pdfF('Years of Experience', gvP('prof-experience'));
+      pdfF('Origin Story', gvP('prof-origin'));
+      pdfF('Style in 3 Words', gvP('prof-style'));
+      pdfF('What Sets Your Work Apart', gvP('prof-differentiator'));
+      pdfF('Dream Client', gvP('prof-dream-client'));
+      pdfF('Appointment Vibe', grP('appt-vibe'));
+      pdfF('90-Day Goals', gvP('prof-goals'));
+      pdfF('Social Media Consent', grP('social-consent'));
+      pdfF('Headshot Status', grP('headshot'));
+      pdfF('Additional Notes', gvP('prof-notes'));
+
+      // ════ PDF: STUDIO ACKNOWLEDGMENTS (new Section VI) ════
+      doc.addPage(); y = 20;
+      doc.setFontSize(8); doc.setTextColor(...gold); doc.setFont('helvetica','bold');
+      doc.text('SECTION VI — STUDIO ACKNOWLEDGMENTS', M, y); y += 3;
+      doc.setDrawColor(...gold); doc.setLineWidth(0.3); doc.line(M, y, W-M, y); y += 8;
+      function ackF(label, checked) {
+        if (y > 260) { doc.addPage(); y = 20; }
+        doc.setFontSize(7); doc.setTextColor(...mid); doc.setFont('helvetica','normal');
+        doc.text(label.toUpperCase(), M, y); y += 4;
+        doc.setFontSize(9); doc.setTextColor(...(checked ? [40,120,60] : [180,40,40]));
+        doc.text(checked ? 'Acknowledged & Agreed' : 'Not acknowledged', M, y); y += 8;
+        doc.setTextColor(...ink);
+      }
+      ackF('Shared Studio Stewardship', !!(document.getElementById('ack-studio') && document.getElementById('ack-studio').checked));
+      ackF('Daily Opening & Closing Checklist', !!(document.getElementById('ack-checklist') && document.getElementById('ack-checklist').checked));
+      ackF('Texas Safety & Compliance (Lash)', !!(document.getElementById('ack-safety') && document.getElementById('ack-safety').checked));
+
+      // ════ PDF: DATA SOVEREIGNTY (renumbered Section VII) ════
+      doc.addPage(); y = 20;
+      doc.setFontSize(8); doc.setTextColor(...ink); doc.setFont('helvetica','bold');
+      doc.text('SECTION VII — DATA SOVEREIGNTY & TRADE SECRETS', M, y); y += 10;
 
       clauseTitle('5.1 Exclusive Ownership of Client Data');
       bodyText('All client data — including names, phone numbers, email addresses, service history, and appointment records — contained within the Salon\'s digital booking system is the exclusive Trade Secret property of Cio Bela. Contractor has no ownership interest in Salon client data.');
@@ -1512,7 +1705,7 @@
       checkSpace(12);
       doc.setFillColor(...warm); doc.rect(M, y, CW, 1, 'F'); y += 8;
       doc.setFontSize(14); doc.setFont('helvetica','bold'); doc.setTextColor(...ink);
-      doc.text('SECTION VI — LIABILITY & OCCUPATIONAL RISK', M, y); y += 10;
+      doc.text('SECTION VIII — LIABILITY & OCCUPATIONAL RISK', M, y); y += 10;
 
       clauseTitle('6.1 Occupational Health & Toxic Tort Waiver');
       bodyText('Contractor acknowledges the occupational health risks of lash extension services including cyanoacrylate fume exposure, adhesive sensitization, eye irritation, repetitive motion injury, and skin sensitization. Contractor assumes all such risks and waives all future claims against Cio Bela for health conditions related to their trade. PPE including N95 masks is strongly encouraged.');
@@ -1524,7 +1717,7 @@
       // ── PAGE 5 — SECTION VII & SIGNATURE ──
       newPage();
       doc.setFontSize(14); doc.setFont('helvetica','bold'); doc.setTextColor(...ink);
-      doc.text('SECTION VII — TERMINATION & LOCKOUT RIGHTS', M, y); y += 10;
+      doc.text('SECTION IX — TERMINATION & LOCKOUT RIGHTS', M, y); y += 10;
 
       clauseTitle('7.1 Immediate Lockout Conditions (Texas Property Code § 93.002)');
       bodyText('Salon reserves the right to execute immediate lockout and disable all digital access without advance notice for: failure to pay rent by Saturday midnight; repeated isolation/adhesive safety or TDLR sanitation violations; conduct damaging the Salon\'s reputation; expired or revoked license; physical altercation or verbal abuse; or material breach of this Agreement.');
@@ -1539,7 +1732,7 @@
       checkSpace(30);
       doc.setFillColor(...warm); doc.rect(M, y, CW, 1, 'F'); y += 8;
       doc.setFontSize(14); doc.setFont('helvetica','bold'); doc.setTextColor(...ink);
-      doc.text('SECTION VIII — SIGNATURES', M, y); y += 10;
+      doc.text('SECTION X — SIGNATURES', M, y); y += 10;
 
       const legalText = 'This electronic signature is legally binding under the E-SIGN Act and the Texas Uniform Electronic Transactions Act (TUETA). By signing below, the Contractor confirms they have read, understood, and agreed to all terms of this Master Booth Rental & Independent Contractor Agreement.';
       bodyText(legalText);
@@ -1595,7 +1788,7 @@
   var _pdfDoc = null;
   var _sigName = '';
 
-  async async function submitContract() {
+  async function submitContract() {
     const sigName = document.getElementById('sig-name').value.trim();
     if (!sigName) { alert('Please type your full legal name to confirm your signature.'); return; }
     if (!hasSig) { alert('Please draw your signature in the signature box.'); return; }
@@ -1652,3 +1845,62 @@
 </script>
 </body>
 </html>
+      // ════════════ PDF SECTION V — ARTIST PROFILE ════════════
+      doc.addPage();
+      doc.setFontSize(8); doc.setTextColor(...gold); doc.setFont('helvetica','bold');
+      doc.text('SECTION V — ARTIST PROFILE & BIO', M, y); y += 3;
+      doc.setDrawColor(...gold); doc.setLineWidth(0.3); doc.line(M, y, W-M, y); y += 8;
+
+      function pdfField(label, val) {
+        if (!val || !val.trim()) return;
+        if (y > 260) { doc.addPage(); y = 20; }
+        doc.setFontSize(7); doc.setTextColor(...mid); doc.setFont('helvetica','normal');
+        doc.text(label.toUpperCase(), M, y); y += 4;
+        doc.setFontSize(9); doc.setTextColor(...ink);
+        const lines = doc.splitTextToSize(val, CW);
+        lines.forEach(l => { if (y > 270) { doc.addPage(); y = 20; } doc.text(l, M, y); y += 5; });
+        y += 3;
+      }
+
+      const gvP = id => { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+      const grP = name => { const el = document.querySelector('input[name="'+name+'"]:checked'); return el ? el.value : ''; };
+
+      pdfField('Display Name', gvP('prof-display-name'));
+      pdfField('Years of Experience', gvP('prof-experience'));
+      pdfField('Origin Story', gvP('prof-origin'));
+      pdfField('Style in 3 Words', gvP('prof-style'));
+      pdfField('What Sets Your Work Apart', gvP('prof-differentiator'));
+      pdfField('Dream Client', gvP('prof-dream-client'));
+      pdfField('Appointment Vibe', grP('appt-vibe'));
+      pdfField('90-Day Goals', gvP('prof-goals'));
+      pdfField('Social Media Consent', grP('social-consent'));
+      pdfField('Headshot Status', grP('headshot'));
+      pdfField('Additional Notes', gvP('prof-notes'));
+
+      // ════════════ PDF SECTION VI — STUDIO ACKNOWLEDGMENTS ════════════
+      doc.addPage(); y = 20;
+      doc.setFontSize(8); doc.setTextColor(...gold); doc.setFont('helvetica','bold');
+      doc.text('SECTION VI — STUDIO ACKNOWLEDGMENTS', M, y); y += 3;
+      doc.setDrawColor(...gold); doc.setLineWidth(0.3); doc.line(M, y, W-M, y); y += 8;
+
+      function ackField(label, checked) {
+        if (y > 260) { doc.addPage(); y = 20; }
+        doc.setFontSize(7); doc.setTextColor(...mid); doc.setFont('helvetica','normal');
+        doc.text(label.toUpperCase(), M, y); y += 4;
+        doc.setFontSize(9);
+        doc.setTextColor(...(checked ? [40,120,60] : [180,40,40]));
+        doc.text(checked ? '✓ Acknowledged & Agreed' : 'Not acknowledged', M, y); y += 8;
+        doc.setTextColor(...ink);
+      }
+
+      const ackStudio = document.getElementById('ack-studio') && document.getElementById('ack-studio').checked;
+      const ackChecklist = document.getElementById('ack-checklist') && document.getElementById('ack-checklist').checked;
+      const ackSafety = document.getElementById('ack-safety') && document.getElementById('ack-safety').checked;
+
+      ackField('Shared Studio Stewardship', ackStudio);
+      ackField('Daily Opening & Closing Checklist', ackChecklist);
+      ackField('Texas Safety & Compliance (Lash)', ackSafety);
+
+      // ════════════ PDF SECTION VII (was V) — DATA SOVEREIGNTY ════════════
+      doc.addPage(); y = 20;
+      
