@@ -1839,7 +1839,9 @@
       } catch(e) { console.error('Supabase error:', e); }
     }
 
-    // Show success screen immediately — no waiting for PDF
+    // Generate PDF first, then show success screen
+    generateAndDownloadPDF();
+
     document.getElementById('progress-bar-wrap').style.display = 'none';
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById('success').style.display = 'block';
