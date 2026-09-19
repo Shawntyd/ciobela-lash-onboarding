@@ -1252,7 +1252,7 @@
     <div style="background:#1C1712;border-radius:4px;padding:20px 24px;max-width:400px;margin:20px auto;text-align:left;">
       <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#B89A6A;margin-bottom:14px;font-weight:600;">Step 1 of 2</p>
       <p style="font-size:14px;color:#F7F3EE;margin-bottom:16px;line-height:1.6;">Tap the button below to download your signed PDF.</p>
-      <button onclick="downloadPDF()" style="display:block;width:100%;background:#B89A6A;color:#fff;border:none;padding:16px 32px;font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:2px;">⬇ Download My Signed PDF</button>
+      <button onclick="try { downloadPDF(); } catch(e) { alert('PDF error: ' + e.message); }" style="display:block;width:100%;background:#B89A6A;color:#fff;border:none;padding:16px 32px;font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;cursor:pointer;border-radius:2px;">⬇ Download My Signed PDF</button>
     </div>
 
     <div style="background:#F7F3EE;border:1px solid #D4C4B0;border-radius:4px;padding:20px 24px;max-width:400px;margin:16px auto;text-align:left;">
@@ -1766,7 +1766,7 @@
       doc.text('CONTRACTOR SIGNATURE', M, y); y += 5;
       doc.setDrawColor(...mid); doc.setLineWidth(0.3); doc.rect(M, y, CW, 36); 
 
-      try { doc.addImage(sigImage, 'PNG', M + 2, y + 2, CW - 4, 32); } catch (e) {}
+      try { doc.addImage(sigImage, 'PNG', M + 2, y + 2, CW - 4, 32); } catch (e) { console.error("PDF error:", e); alert("PDF generation failed: " + e.message); return; }
       y += 42;
 
       doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(...mid);
