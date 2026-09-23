@@ -1080,7 +1080,7 @@
     <div class="clause-card">
       <div class="clause-head"><span>6.1 — Occupational Health &amp; Toxic Tort Waiver</span></div>
       <div class="clause-body">
-        Contractor acknowledges the inherent occupational health risks associated with waxing services, including but not limited to: <strong>cyanoacrylate fume exposure (adhesive off-gassing), adhesive sensitization, eye irritation, repetitive motion injury (wrist, shoulder, neck), and skin sensitization</strong>. Contractor assumes all such occupational health risks and <strong>waives all future claims</strong> against Cio Bela for any respiratory, dermatological, or other health conditions related to the performance of their trade within this facility. Contractor is strongly encouraged to use appropriate PPE including N95 masks and ensure adequate ventilation at their workstation at all times.
+        Contractor acknowledges the inherent occupational health risks associated with lash extension services, including but not limited to: <strong>cyanoacrylate fume exposure (adhesive off-gassing), adhesive sensitization, eye irritation, repetitive motion injury (wrist, shoulder, neck), and skin sensitization</strong>. Contractor assumes all such occupational health risks and <strong>waives all future claims</strong> against Cio Bela for any respiratory, dermatological, or other health conditions related to the performance of their trade within this facility. Contractor is strongly encouraged to use appropriate PPE including N95 masks and ensure adequate ventilation at their workstation at all times.
       </div>
     </div>
 
@@ -1725,7 +1725,7 @@
       doc.text('SECTION VIII — LIABILITY & OCCUPATIONAL RISK', M, y); y += 10;
 
       clauseTitle('6.1 Occupational Health & Toxic Tort Waiver');
-      bodyText('Contractor acknowledges the inherent occupational health risks of waxing services including chemical exposure, repetitive motion injury, and skin sensitization. Contractor assumes all such risks and waives all future claims against Cio Bela for health conditions related to their trade.');
+      bodyText('Contractor acknowledges the occupational health risks of lash extension services including cyanoacrylate fume exposure, adhesive sensitization, eye irritation, repetitive motion injury, and skin sensitization. Contractor assumes all such risks and waives all future claims against Cio Bela for health conditions related to their trade.');
       clauseTitle('6.2 Client Service Liability');
       bodyText('Contractor is solely and exclusively liable for all services performed on clients. Cio Bela bears no responsibility for any service-related injury or claim. Contractor is strongly encouraged to maintain independent professional liability insurance.');
       clauseTitle('6.3 Indemnification');
@@ -1857,7 +1857,7 @@
     var urlEmail = new URLSearchParams(window.location.search).get('email');
     var formEmail = document.getElementById('cont-email').value.trim();
     var email = urlEmail || formEmail;
-    var hubUrl = 'https://shawntyd.github.io/ciobela-lash-onboarding/cio-bela-waxing-hub.html';
+    var hubUrl = 'https://shawntyd.github.io/ciobela-lash-onboarding/cio-bela-lash-hub.html';
     if (email) hubUrl += '?email=' + encodeURIComponent(email) + '&completed=contract';
     window.location.href = hubUrl;
   }
