@@ -317,7 +317,7 @@ function scrollTop() {
     <div class="chip-grid" id="allergy-grid">
       <label class="chip" onclick="toggleChip(this)"><input type="checkbox" value="Latex"> Latex</label>
       <label class="chip" onclick="toggleChip(this)"><input type="checkbox" value="Acetone / Solvents"> Acetone / Solvents</label>
-      <label class="chip" onclick="toggleChip(this)"><input type="checkbox" value="Acrylics / MMA"> Acrylics / MMA</label>
+      <label class="chip" onclick="toggleChip(this)"><input type="checkbox" value="Lash Adhesive (Cyanoacrylate)"> Lash Adhesive (Cyanoacrylate)</label>
       <label class="chip" onclick="toggleChip(this)"><input type="checkbox" value="Gel / UV Products"> Gel / UV Products</label>
       <label class="chip" onclick="toggleChip(this)"><input type="checkbox" value="Fragrance / Perfume"> Fragrance / Perfume</label>
       <label class="chip" onclick="toggleChip(this)"><input type="checkbox" value="Nickel / Metal"> Nickel / Metal</label>
@@ -895,7 +895,7 @@ function scrollTop() {
 
   function returnToHub() {
     var email = document.getElementById('c-email').value.trim();
-    var url = 'https://shawntyd.github.io/ciobela-lash-onboarding/cio-bela-waxing-hub.html';
+    var url = 'https://shawntyd.github.io/ciobela-lash-onboarding/cio-bela-lash-hub.html';
     if (email) url += '?email=' + encodeURIComponent(email) + '&completed=emergency';
     window.location.href = url;
   }
