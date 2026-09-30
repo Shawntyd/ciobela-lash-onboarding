@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cio Bela — Lash Artist Bio Questionnaire</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  :root {
+    --cream: #F5F0E8; --ink: #1A1714; --gold: #C9A96E;
+    --gold-light: rgba(201,169,110,0.15); --warm-mid: #8C7B68;
+    --rule: rgba(201,169,110,0.3); --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--cream); color: var(--ink);
+    font-family: 'DM Mono', monospace; font-weight: 300;
+    min-height: 100vh; padding: 40px 20px 80px;
+  }
+  .container { max-width: 680px; margin: 0 auto; }
+
+  .page-header { border-bottom: 1px solid var(--rule); padding-bottom: 24px; margin-bottom: 32px; }
+  .page-tag { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px,5vw,38px); font-weight: 300; line-height: 1.15; }
+  .page-title em { font-style: italic; color: var(--gold); }
+  .page-desc { margin-top: 12px; font-size: 11.5px; line-height: 1.75; color: var(--warm-mid); }
+
+  .section-divider { display: flex; align-items: center; gap: 12px; margin: 32px 0 18px; }
+  .section-divider span { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+  .section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+  .field-group { margin-bottom: 24px; }
+  .field-label { display: block; font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--warm-mid); margin-bottom: 8px; }
+  .field-label .req { color: var(--gold); margin-left: 3px; }
+  .field-sub { font-size: 10.5px; color: var(--warm-mid); line-height: 1.65; margin-bottom: 12px; }
+
+  input[type="text"], input[type="email"], textarea {
+    width: 100%; background: var(--white);
+    border: 1px solid rgba(138,123,104,0.3); color: var(--ink);
+    font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 300;
+    padding: 13px 15px; outline: none; transition: border-color 0.2s;
+    -webkit-appearance: none; appearance: none; border-radius: 0;
+  }
+  input:focus, textarea:focus { border-color: var(--gold); }
+  textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+
+  .radio-group { display: flex; flex-direction: column; gap: 10px; }
+  .radio-option {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 13px 15px; background: var(--white);
+    border: 1px solid rgba(138,123,104,0.3); cursor: pointer; transition: border-color 0.2s;
+  }
+  .radio-option:hover { border-color: var(--gold); }
+  .radio-option input[type="radio"] {
+    width: 15px; height: 15px; min-width: 15px;
+    border: 1px solid var(--gold); background: var(--white);
+    appearance: none; -webkit-appearance: none; border-radius: 50%;
+    cursor: pointer; position: relative; padding: 0; margin-top: 3px;
+  }
+  .radio-option input[type="radio"]:checked::after {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%); width: 7px; height: 7px;
+    border-radius: 50%; background: var(--gold);
+  }
+  .radio-label { font-size: 12px; color: var(--ink); line-height: 1.5; }
+
+  .legal-statement {
+    background: var(--gold-light); border: 1px solid var(--rule);
+    padding: 20px; margin: 24px 0; font-size: 11px; line-height: 1.8; color: var(--ink);
+  }
+  .legal-statement strong { font-weight: 400; color: var(--ink); }
+
+  .sig-block { background: var(--white); border: 1px solid var(--rule); padding: 28px; margin-bottom: 24px; }
+  .sig-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+  .sig-desc { font-size: 11px; line-height: 1.75; color: var(--warm-mid); margin-bottom: 20px; }
+  .sig-canvas-wrap { position: relative; margin-bottom: 10px; }
+  #sig-canvas {
+    width: 100%; height: 140px; border: 1px solid rgba(138,123,104,0.4);
+    background: #FDFAF5; cursor: crosshair; display: block; touch-action: none;
+  }
+  .sig-clear {
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--warm-mid); background: none; border: none; cursor: pointer;
+    padding: 6px 0; text-decoration: underline;
+  }
+  .sig-clear:hover { color: var(--ink); }
+  .sig-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; }
+  .sig-date { font-size: 11px; color: var(--warm-mid); margin-top: 8px; }
+
+  .btn-submit {
+    width: 100%; padding: 16px; background: var(--gold); border: 1px solid var(--gold); color: var(--ink);
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+    margin-top: 8px;
+  }
+  .btn-submit:hover { background: var(--ink); border-color: var(--ink); color: var(--gold); }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .success-screen { display: none; text-align: center; padding: 60px 20px; }
+  .success-screen.active { display: block; animation: rise 0.6s ease forwards; }
+  @keyframes rise { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+  .success-icon {
+    width: 56px; height: 56px; border: 1px solid var(--gold); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 28px; font-size: 22px; color: var(--gold);
+  }
+  .success-title { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 300; line-height: 1.15; margin-bottom: 16px; }
+  .success-title em { font-style: italic; color: var(--gold); }
+  .success-desc { font-size: 12px; color: var(--warm-mid); line-height: 1.75; max-width: 420px; margin: 0 auto; }
+  .success-note {
+    margin-top: 16px; color: var(--ink); font-size: 12.5px; background: var(--gold-light);
+    border: 1px solid var(--rule); padding: 16px; text-align: left; line-height: 1.8;
+  }
+  .btn-hub {
+    display: inline-block; margin-top: 24px; padding: 14px 28px;
+    background: var(--ink); color: var(--cream); text-decoration: none;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div id="form-wrap">
+    <div class="page-header">
+      <div class="page-tag">Founding Artist Profile</div>
+      <h1 class="page-title">Meet the Artist —<br><em>Bio Questionnaire</em></h1>
+      <p class="page-desc">This is where your personality gets to shine. Your answers will help us craft a booking profile and bio that is equal parts professional and unforgettable. There are no wrong answers — be honest, be you.</p>
+    </div>
+
+    <div class="section-divider"><span>The Basics</span></div>
+
+    <div class="field-group">
+      <label class="field-label">What name do you want displayed on your profile? <span class="req">*</span></label>
+      <p class="field-sub">This can be your full name, first name only, or a professional/brand name.</p>
+      <input type="text" id="f-display-name" placeholder="e.g. Jasmine T. | Lashes by Jas | Jasmine Torres">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What city are you based in or known in?</label>
+      <input type="text" id="f-location" placeholder="e.g. The Woodlands, TX">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">How many years have you been doing lash extensions?</label>
+      <input type="text" id="f-experience" placeholder="e.g. 3 years, just certified, 10+ years">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What got you into lash artistry in the first place?</label>
+      <p class="field-sub">The origin story — this is always compelling to clients.</p>
+      <textarea id="f-origin" placeholder="Tell us how it started..." rows="4"></textarea>
+    </div>
+
+    <div class="section-divider"><span>Your Style &amp; Specialty</span></div>
+
+    <div class="field-group">
+      <label class="field-label">How would you describe your lash style in 3 words?</label>
+      <input type="text" id="f-style-words" placeholder="e.g. Precise, wispy, detailed — or bold, clean, luxurious">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What is your absolute favorite service to perform and why?</label>
+      <textarea id="f-fav-service" placeholder="The service that makes you lose track of time..." rows="3"></textarea>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What sets your work apart from other lash artists?</label>
+      <p class="field-sub">Don't be modest — this goes on your profile.</p>
+      <textarea id="f-differentiator" placeholder="What do clients always compliment or come back for?" rows="3"></textarea>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Describe your dream client in a few sentences.</label>
+      <p class="field-sub">Who do you do your best work for? This helps attract the right people to your chair.</p>
+      <textarea id="f-dream-client" placeholder="e.g. Someone who trusts my judgment on curl and length, books fills every 2–3 weeks, and refers their friends..." rows="3"></textarea>
+    </div>
+
+    <div class="section-divider"><span>Personality &amp; Vibe</span></div>
+
+    <div class="field-group">
+      <label class="field-label">How would your best friend describe you in one sentence?</label>
+      <input type="text" id="f-friend-desc" placeholder="Be honest — the funnier the better">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What is your lash appointment vibe?</label>
+      <p class="field-sub">What can a client expect when they sit in your chair?</p>
+      <div class="radio-group">
+        <label class="radio-option"><input type="radio" name="appt-vibe" value="chatty"><span class="radio-label">Chatty &amp; social — we'll leave as friends</span></label>
+        <label class="radio-option"><input type="radio" name="appt-vibe" value="focused"><span class="radio-label">Focused &amp; calm — your relaxing escape, some clients even nap</span></label>
+        <label class="radio-option"><input type="radio" name="appt-vibe" value="mix"><span class="radio-label">A mix — I read the room and match your energy</span></label>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What is always playing in your earbuds or at your station?</label>
+      <input type="text" id="f-music" placeholder="e.g. R&B, true crime podcasts, lo-fi beats, reggaeton...">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What is a fun or unexpected fact about you that has nothing to do with lashes?</label>
+      <textarea id="f-fun-fact" placeholder="Hobbies, hidden talents, random obsessions — go for it" rows="3"></textarea>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">If your lash style were a celebrity, who would it be?</label>
+      <input type="text" id="f-celebrity" placeholder="e.g. Zendaya — clean, elevated, always unexpected">
+    </div>
+
+    <div class="section-divider"><span>Motivation &amp; Mission</span></div>
+
+    <div class="field-group">
+      <label class="field-label">Why do you do this work? What keeps you going?</label>
+      <p class="field-sub">Beyond money — what is the deeper reason you chose this craft?</p>
+      <textarea id="f-why" placeholder="This is the heart of your bio..." rows="4"></textarea>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What do you want your clients to feel when they leave your chair?</label>
+      <input type="text" id="f-client-feeling" placeholder="e.g. Confident, seen, pampered, like their best self...">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Where do you see yourself and your lash career in 3 years?</label>
+      <textarea id="f-vision" placeholder="Dream big — this is for your profile story..." rows="3"></textarea>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Share a quote that represents you or your work — personal, professional, or both.</label>
+      <p class="field-sub">A motto, a lyric, something a mentor said, or something you made up yourself.</p>
+      <textarea id="f-quote" placeholder="Your quote here..." rows="2"></textarea>
+    </div>
+
+    <div class="section-divider"><span>Final Profile Details</span></div>
+
+    <div class="field-group">
+      <label class="field-label">Do you have a professional headshot or a photo you love that represents your brand?</label>
+      <div class="radio-group">
+        <label class="radio-option"><input type="radio" name="headshot" value="yes"><span class="radio-label">Yes — I will text or email it to you</span></label>
+        <label class="radio-option"><input type="radio" name="headshot" value="no"><span class="radio-label">No — I need help getting one taken</span></label>
+        <label class="radio-option"><input type="radio" name="headshot" value="soon"><span class="radio-label">Not yet but I'm working on it</span></label>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Do you consent to having your work, name, and likeness featured on Cio Bela's Instagram, TikTok, and website for marketing purposes? <span class="req">*</span></label>
+      <div class="radio-group">
+        <label class="radio-option"><input type="radio" name="social-consent" value="yes"><span class="radio-label">Yes — I consent to being featured on Cio Bela's social media and website</span></label>
+        <label class="radio-option"><input type="radio" name="social-consent" value="no"><span class="radio-label">No — I do not consent at this time</span></label>
+        <label class="radio-option"><input type="radio" name="social-consent" value="partial"><span class="radio-label">Partially — I consent to my work being featured but not my face/name</span></label>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Is there anything else you want people to know about you before they book?</label>
+      <textarea id="f-anything-else" placeholder="Anything that didn't fit anywhere else — have at it..." rows="4"></textarea>
+    </div>
+
+    <div class="section-divider"><span>Electronic Signature</span></div>
+
+    <div class="legal-statement">
+      By signing below, I, the undersigned, certify that all information provided in this Bio Questionnaire is true and accurate to the best of my knowledge, and I consent to Cio Bela Salons using this information to build my public artist profile per the choices indicated above. This electronic signature is legally binding under the E-SIGN Act and the Texas Uniform Electronic Transactions Act (TUETA).
+    </div>
+
+    <div class="sig-block">
+      <div class="sig-title">Your Signature</div>
+      <div class="sig-desc">Please sign in the box below using your finger or mouse.</div>
+      <div class="sig-canvas-wrap"><canvas id="sig-canvas"></canvas></div>
+      <button class="sig-clear" onclick="clearSig()">✕ Clear signature</button>
+      <div class="sig-fields">
+        <div class="field-group"><label class="field-label">Full Legal Name <span class="req">*</span></label><input type="text" id="sig-name" placeholder="Type your full legal name"></div>
+        <div class="field-group"><label class="field-label">Date</label><input type="text" id="sig-date" placeholder="Auto-filled on submit" readonly style="background:#F5F0E8;color:var(--warm-mid);"></div>
+      </div>
+      <div class="sig-date" id="sig-timestamp"></div>
+    </div>
+
+    <button class="btn-submit" onclick="submitForm()">Submit Bio Questionnaire ✓</button>
+  </div>
+
+  <div class="success-screen" id="success">
+    <div class="success-icon">✓</div>
+    <h2 class="success-title">Profile Received —<br><em>thank you!</em></h2>
+    <p class="success-desc">Your Bio Questionnaire has been submitted and your signed PDF has been downloaded to your device.</p>
+    <div class="success-note">
+      <strong style="font-family:'Cormorant Garamond',serif; font-size:15px; display:block; margin-bottom:6px;">One last step —</strong>
+      Please locate the PDF that just downloaded and email it to <strong>ciobelasalons@yahoo.com</strong> so we have a copy on file.
+    </div>
+    <a class="btn-hub" href="https://shawntyd.github.io/ciobela-lash-onboarding/cio-bela-lash-hub.html">← Return to Onboarding Checklist</a>
+  </div>
+
+</div>
+<script>
+  let sigCanvas, sigCtx, sigDrawing = false, sigHasSig = false;
+
+  window.addEventListener('DOMContentLoaded', () => {
+    sigCanvas = document.getElementById('sig-canvas');
+    sigCtx = sigCanvas.getContext('2d');
+    sigCanvas.width = sigCanvas.offsetWidth;
+    sigCanvas.height = 140;
+    sigCtx.strokeStyle = '#1A1714'; sigCtx.lineWidth = 2; sigCtx.lineCap = 'round'; sigCtx.lineJoin = 'round';
+
+    function getPos(e) {
+      const rect = sigCanvas.getBoundingClientRect();
+      const cx = e.clientX !== undefined ? e.clientX : e.touches[0].clientX;
+      const cy = e.clientY !== undefined ? e.clientY : e.touches[0].clientY;
+      return { x: cx - rect.left, y: cy - rect.top };
+    }
+    sigCanvas.addEventListener('mousedown', e => { sigDrawing = true; sigCtx.beginPath(); const p = getPos(e); sigCtx.moveTo(p.x,p.y); });
+    sigCanvas.addEventListener('mousemove', e => { if(!sigDrawing) return; const p = getPos(e); sigCtx.lineTo(p.x,p.y); sigCtx.stroke(); sigHasSig = true; });
+    sigCanvas.addEventListener('mouseup', () => sigDrawing = false);
+    sigCanvas.addEventListener('mouseleave', () => sigDrawing = false);
+    sigCanvas.addEventListener('touchstart', e => { e.preventDefault(); sigDrawing = true; sigCtx.beginPath(); const p = getPos(e); sigCtx.moveTo(p.x,p.y); }, {passive:false});
+    sigCanvas.addEventListener('touchmove', e => { e.preventDefault(); if(!sigDrawing) return; const p = getPos(e); sigCtx.lineTo(p.x,p.y); sigCtx.stroke(); sigHasSig = true; }, {passive:false});
+    sigCanvas.addEventListener('touchend', () => sigDrawing = false);
+
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+    const timeStr = now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+    document.getElementById('sig-date').value = dateStr;
+    document.getElementById('sig-timestamp').textContent = 'Signed on ' + dateStr + ' at ' + timeStr;
+  });
+
+  function clearSig() { if(sigCtx) sigCtx.clearRect(0,0,sigCanvas.width,sigCanvas.height); sigHasSig = false; }
+  function gv(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
+  function gr(name) { const el = document.querySelector('input[name="'+name+'"]:checked'); return el ? el.value : ''; }
+
+  function submitForm() {
+    const sigName = gv('sig-name');
+    if (!sigName) { alert('Please type your full legal name to complete your signature.'); return; }
+    if (!sigHasSig) { alert('Please sign in the signature box before submitting.'); return; }
+
+    const btn = document.querySelector('.btn-submit');
+    btn.textContent = 'Generating PDF...'; btn.disabled = true;
+
+    const sigImage = sigCanvas.toDataURL('image/png');
+    const sigDate = gv('sig-date');
+
+    try {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ orientation:'portrait', unit:'mm', format:'a4' });
+      const W=210, M=18, CW=W-M*2;
+      let y=20;
+      const gold=[201,169,110], ink=[26,23,20], mid=[140,123,104];
+
+      function checkPage(n=12){ if(y+n>275){ doc.addPage(); y=20; } }
+      function heading(t){
+        checkPage(16);
+        doc.setFontSize(7); doc.setTextColor(...gold); doc.setFont('helvetica','normal');
+        doc.text(t.toUpperCase(), M, y); y+=3;
+        doc.setDrawColor(...gold); doc.setLineWidth(0.3); doc.line(M,y,W-M,y); y+=6;
+      }
+      function field(label, val){
+        if(!val || !val.toString().trim()) return;
+        checkPage(14);
+        doc.setFontSize(7); doc.setTextColor(...mid); doc.setFont('helvetica','normal');
+        doc.text(label.toUpperCase(), M, y); y+=4;
+        doc.setFontSize(9); doc.setTextColor(...ink);
+        doc.splitTextToSize(val.toString(), CW).forEach(l=>{ checkPage(6); doc.text(l,M,y); y+=5; }); y+=2;
+      }
+
+      doc.setFillColor(...gold); doc.rect(0,0,W,8,'F');
+      doc.setFontSize(7); doc.setTextColor(255,255,255); doc.setFont('helvetica','normal');
+      doc.text('CIO BELA SALONS  —  LASH ARTIST BIO QUESTIONNAIRE', M, 5.5);
+      y=24;
+      doc.setFontSize(20); doc.setTextColor(...ink); doc.setFont('helvetica','bold');
+      doc.text('Lash Artist Bio Questionnaire', M, y); y+=8;
+      doc.setFontSize(9); doc.setTextColor(...mid); doc.setFont('helvetica','normal');
+      doc.text('Electronically signed on ' + sigDate, M, y); y+=12;
+
+      heading('The Basics');
+      field('Display Name', gv('f-display-name'));
+      field('City / Location', gv('f-location'));
+      field('Years of Experience', gv('f-experience'));
+      field('Origin Story', gv('f-origin'));
+
+      heading('Style & Specialty');
+      field('Style in 3 Words', gv('f-style-words'));
+      field('Favorite Service', gv('f-fav-service'));
+      field('What Sets You Apart', gv('f-differentiator'));
+      field('Dream Client', gv('f-dream-client'));
+
+      heading('Personality & Vibe');
+      field('Best Friend Description', gv('f-friend-desc'));
+      field('Appointment Vibe', gr('appt-vibe'));
+      field('Music / Podcast Preference', gv('f-music'));
+      field('Fun Fact', gv('f-fun-fact'));
+      field('Celebrity Style Match', gv('f-celebrity'));
+
+      heading('Motivation & Mission');
+      field('Why This Work', gv('f-why'));
+      field('Desired Client Feeling', gv('f-client-feeling'));
+      field('3-Year Vision', gv('f-vision'));
+      field('Personal Quote', gv('f-quote'));
+
+      heading('Final Profile Details');
+      field('Headshot Status', gr('headshot'));
+      field('Social Media Consent', gr('social-consent'));
+      field('Additional Notes', gv('f-anything-else'));
+
+      // Signature page
+      doc.addPage(); y=20;
+      doc.setFillColor(...gold); doc.rect(0,0,W,8,'F');
+      doc.setFontSize(7); doc.setTextColor(255,255,255);
+      doc.text('CIO BELA SALONS  —  ELECTRONIC SIGNATURE PAGE', M, 5.5);
+      y=24;
+      doc.setFontSize(14); doc.setTextColor(...ink); doc.setFont('helvetica','bold');
+      doc.text('Electronic Signature & Certification', M, y); y+=10;
+      doc.setFontSize(8); doc.setTextColor(...ink); doc.setFont('helvetica','normal');
+      const legal='By signing below, the undersigned certifies that all information provided in this Bio Questionnaire is true and accurate, and consents to Cio Bela Salons using this information to build their public artist profile per the choices indicated. This electronic signature is legally binding under the E-SIGN Act and the Texas Uniform Electronic Transactions Act (TUETA).';
+      doc.splitTextToSize(legal, CW).forEach(l=>{ doc.text(l,M,y); y+=5; }); y+=8;
+      doc.setFontSize(7); doc.setTextColor(...mid); doc.text('SIGNATURE', M, y); y+=4;
+      doc.setDrawColor(...mid); doc.setLineWidth(0.3); doc.rect(M,y,CW,36);
+      try { doc.addImage(sigImage,'PNG',M+2,y+2,CW-4,32); } catch(e) {}
+      y+=42;
+      doc.setFontSize(7); doc.setTextColor(...mid); doc.text('FULL LEGAL NAME', M, y); y+=4;
+      doc.setFontSize(12); doc.setTextColor(...ink); doc.setFont('helvetica','bold');
+      doc.text(sigName, M, y); y+=8;
+      doc.setFontSize(7); doc.setTextColor(...mid); doc.setFont('helvetica','normal');
+      doc.text('DATE OF SIGNING', M, y); y+=4;
+      doc.setFontSize(9); doc.setTextColor(...ink); doc.text(sigDate, M, y);
+
+      const pc = doc.internal.getNumberOfPages();
+      for (let i=1;i<=pc;i++){
+        doc.setPage(i);
+        doc.setFillColor(245,240,232); doc.rect(0,287,W,10,'F');
+        doc.setFontSize(6); doc.setTextColor(...mid);
+        doc.text('Cio Bela Salons  —  Confidential Lash Artist Bio Questionnaire', M, 292);
+        doc.text('Page ' + i + ' of ' + pc, W-M, 292, { align:'right' });
+      }
+
+      doc.save('CioBela-LashArtist-BioQuestionnaire-' + sigName.replace(/\s+/g,'-') + '.pdf');
+    } catch (err) {
+      console.error('PDF error:', err);
+      alert('PDF generation failed: ' + err.message);
+      btn.textContent = 'Submit Bio Questionnaire ✓'; btn.disabled = false;
+      return;
+    }
+
+    document.getElementById('form-wrap').style.display = 'none';
+    document.getElementById('success').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
