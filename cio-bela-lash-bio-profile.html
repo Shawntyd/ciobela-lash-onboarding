@@ -114,6 +114,7 @@
   }
   .yn-opt span { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: var(--ink); }
   .svc-detail { display: none; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+  .refill-divider { grid-column: 1 / -1; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--rule); }
   .svc-detail.show { display: grid; }
   .svc-detail input { font-size: 11px; padding: 10px 12px; }
   .dl { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm-mid); margin-bottom: 4px; }
@@ -176,92 +177,130 @@
     </div>
 
     <div class="section-divider"><span>Services &amp; Pricing</span></div>
-    <p class="field-sub" style="margin-bottom:16px;">Indicate which services you offer. For every Yes, provide your estimated duration and starting price — this is what will show on your booking profile.</p>
+    <p class="field-sub" style="margin-bottom:16px;">Indicate which lash sets you offer. For every Yes, fill in your Initial set pricing, then your 2-Week Refill, then your 3-Week Refill.</p>
 
     <div class="svc-item">
       <p class="svc-name"><strong>Classic Full Set</strong> — One extension per natural lash for a natural, mascara-like look.</p>
       <div class="yn-row"><label class="yn-opt"><input type="radio" name="s1" value="yes" onchange="td('d1',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s1" value="no" onchange="td('d1',false)"><span>No</span></label></div>
-      <div class="svc-detail" id="d1"><div><div class="dl">Est. Duration</div><input type="text" id="d1-dur" placeholder="e.g. 90 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d1-price" placeholder="e.g. $90"></div></div>
-    </div>
-    <div class="svc-item">
-      <p class="svc-name"><strong>Classic Fill</strong> — Maintenance fill for existing classic sets, typically every 2–3 weeks.</p>
-      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s2" value="yes" onchange="td('d2',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s2" value="no" onchange="td('d2',false)"><span>No</span></label></div>
-      <div class="svc-detail" id="d2"><div><div class="dl">Est. Duration</div><input type="text" id="d2-dur" placeholder="e.g. 60 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d2-price" placeholder="e.g. $55"></div></div>
+      <div class="svc-detail" id="d1">
+        <div><div class="dl">Initial — Est. Duration</div><input type="text" id="d1-init-dur" placeholder="e.g. 90 min" oninput="checkRefillReveal(1)"></div>
+        <div><div class="dl">Initial — Starting Price</div><input type="text" id="d1-init-price" placeholder="e.g. $90" oninput="checkRefillReveal(1)"></div>
+        <div class="refill-divider" id="d1-r2-divider" style="display:none;">2-Week Refill</div>
+        <div id="d1-r2-dur-wrap" style="display:none;"><div class="dl">2-Week Refill — Est. Duration</div><input type="text" id="d1-refill2-dur" placeholder="e.g. 60 min" oninput="checkRefillReveal(1)"></div>
+        <div id="d1-r2-price-wrap" style="display:none;"><div class="dl">2-Week Refill — Starting Price</div><input type="text" id="d1-refill2-price" placeholder="e.g. $55" oninput="checkRefillReveal(1)"></div>
+        <div class="refill-divider" id="d1-r3-divider" style="display:none;">3-Week Refill</div>
+        <div id="d1-r3-dur-wrap" style="display:none;"><div class="dl">3-Week Refill — Est. Duration</div><input type="text" id="d1-refill3-dur" placeholder="e.g. 75 min"></div>
+        <div id="d1-r3-price-wrap" style="display:none;"><div class="dl">3-Week Refill — Starting Price</div><input type="text" id="d1-refill3-price" placeholder="e.g. $65"></div>
+      </div>
     </div>
     <div class="svc-item">
       <p class="svc-name"><strong>Hybrid Full Set</strong> — A mix of classic and volume fans for texture with natural density.</p>
-      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s3" value="yes" onchange="td('d3',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s3" value="no" onchange="td('d3',false)"><span>No</span></label></div>
-      <div class="svc-detail" id="d3"><div><div class="dl">Est. Duration</div><input type="text" id="d3-dur" placeholder="e.g. 105 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d3-price" placeholder="e.g. $105"></div></div>
-    </div>
-    <div class="svc-item">
-      <p class="svc-name"><strong>Hybrid Fill</strong> — Maintenance fill for existing hybrid sets.</p>
-      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s4" value="yes" onchange="td('d4',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s4" value="no" onchange="td('d4',false)"><span>No</span></label></div>
-      <div class="svc-detail" id="d4"><div><div class="dl">Est. Duration</div><input type="text" id="d4-dur" placeholder="e.g. 60 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d4-price" placeholder="e.g. $65"></div></div>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s2" value="yes" onchange="td('d2',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s2" value="no" onchange="td('d2',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d2">
+        <div><div class="dl">Initial — Est. Duration</div><input type="text" id="d2-init-dur" placeholder="e.g. 105 min" oninput="checkRefillReveal(2)"></div>
+        <div><div class="dl">Initial — Starting Price</div><input type="text" id="d2-init-price" placeholder="e.g. $105" oninput="checkRefillReveal(2)"></div>
+        <div class="refill-divider" id="d2-r2-divider" style="display:none;">2-Week Refill</div>
+        <div id="d2-r2-dur-wrap" style="display:none;"><div class="dl">2-Week Refill — Est. Duration</div><input type="text" id="d2-refill2-dur" placeholder="e.g. 75 min" oninput="checkRefillReveal(2)"></div>
+        <div id="d2-r2-price-wrap" style="display:none;"><div class="dl">2-Week Refill — Starting Price</div><input type="text" id="d2-refill2-price" placeholder="e.g. $65" oninput="checkRefillReveal(2)"></div>
+        <div class="refill-divider" id="d2-r3-divider" style="display:none;">3-Week Refill</div>
+        <div id="d2-r3-dur-wrap" style="display:none;"><div class="dl">3-Week Refill — Est. Duration</div><input type="text" id="d2-refill3-dur" placeholder="e.g. 90 min"></div>
+        <div id="d2-r3-price-wrap" style="display:none;"><div class="dl">3-Week Refill — Starting Price</div><input type="text" id="d2-refill3-price" placeholder="e.g. $75"></div>
+      </div>
     </div>
     <div class="svc-item">
       <p class="svc-name"><strong>Volume Full Set</strong> — Multiple lightweight extensions fanned per natural lash for fuller density.</p>
-      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s5" value="yes" onchange="td('d5',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s5" value="no" onchange="td('d5',false)"><span>No</span></label></div>
-      <div class="svc-detail" id="d5"><div><div class="dl">Est. Duration</div><input type="text" id="d5-dur" placeholder="e.g. 120 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d5-price" placeholder="e.g. $120"></div></div>
-    </div>
-    <div class="svc-item">
-      <p class="svc-name"><strong>Volume Fill</strong> — Maintenance fill for existing volume sets.</p>
-      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s6" value="yes" onchange="td('d6',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s6" value="no" onchange="td('d6',false)"><span>No</span></label></div>
-      <div class="svc-detail" id="d6"><div><div class="dl">Est. Duration</div><input type="text" id="d6-dur" placeholder="e.g. 75 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d6-price" placeholder="e.g. $70"></div></div>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s3" value="yes" onchange="td('d3',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s3" value="no" onchange="td('d3',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d3">
+        <div><div class="dl">Initial — Est. Duration</div><input type="text" id="d3-init-dur" placeholder="e.g. 120 min" oninput="checkRefillReveal(3)"></div>
+        <div><div class="dl">Initial — Starting Price</div><input type="text" id="d3-init-price" placeholder="e.g. $120" oninput="checkRefillReveal(3)"></div>
+        <div class="refill-divider" id="d3-r2-divider" style="display:none;">2-Week Refill</div>
+        <div id="d3-r2-dur-wrap" style="display:none;"><div class="dl">2-Week Refill — Est. Duration</div><input type="text" id="d3-refill2-dur" placeholder="e.g. 90 min" oninput="checkRefillReveal(3)"></div>
+        <div id="d3-r2-price-wrap" style="display:none;"><div class="dl">2-Week Refill — Starting Price</div><input type="text" id="d3-refill2-price" placeholder="e.g. $70" oninput="checkRefillReveal(3)"></div>
+        <div class="refill-divider" id="d3-r3-divider" style="display:none;">3-Week Refill</div>
+        <div id="d3-r3-dur-wrap" style="display:none;"><div class="dl">3-Week Refill — Est. Duration</div><input type="text" id="d3-refill3-dur" placeholder="e.g. 100 min"></div>
+        <div id="d3-r3-price-wrap" style="display:none;"><div class="dl">3-Week Refill — Starting Price</div><input type="text" id="d3-refill3-price" placeholder="e.g. $80"></div>
+      </div>
     </div>
     <div class="svc-item">
       <p class="svc-name"><strong>Mega Volume Full Set</strong> — Ultra-fine, high-fan-count extensions for maximum density and drama.</p>
-      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s7" value="yes" onchange="td('d7',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s7" value="no" onchange="td('d7',false)"><span>No</span></label></div>
-      <div class="svc-detail" id="d7"><div><div class="dl">Est. Duration</div><input type="text" id="d7-dur" placeholder="e.g. 135 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d7-price" placeholder="e.g. $140"></div></div>
-    </div>
-    <div class="svc-item">
-      <p class="svc-name"><strong>Mega Volume Fill</strong> — Maintenance fill for existing mega volume sets.</p>
-      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s8" value="yes" onchange="td('d8',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s8" value="no" onchange="td('d8',false)"><span>No</span></label></div>
-      <div class="svc-detail" id="d8"><div><div class="dl">Est. Duration</div><input type="text" id="d8-dur" placeholder="e.g. 90 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d8-price" placeholder="e.g. $85"></div></div>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s4" value="yes" onchange="td('d4',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s4" value="no" onchange="td('d4',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d4">
+        <div><div class="dl">Initial — Est. Duration</div><input type="text" id="d4-init-dur" placeholder="e.g. 135 min" oninput="checkRefillReveal(4)"></div>
+        <div><div class="dl">Initial — Starting Price</div><input type="text" id="d4-init-price" placeholder="e.g. $140" oninput="checkRefillReveal(4)"></div>
+        <div class="refill-divider" id="d4-r2-divider" style="display:none;">2-Week Refill</div>
+        <div id="d4-r2-dur-wrap" style="display:none;"><div class="dl">2-Week Refill — Est. Duration</div><input type="text" id="d4-refill2-dur" placeholder="e.g. 105 min" oninput="checkRefillReveal(4)"></div>
+        <div id="d4-r2-price-wrap" style="display:none;"><div class="dl">2-Week Refill — Starting Price</div><input type="text" id="d4-refill2-price" placeholder="e.g. $85" oninput="checkRefillReveal(4)"></div>
+        <div class="refill-divider" id="d4-r3-divider" style="display:none;">3-Week Refill</div>
+        <div id="d4-r3-dur-wrap" style="display:none;"><div class="dl">3-Week Refill — Est. Duration</div><input type="text" id="d4-refill3-dur" placeholder="e.g. 115 min"></div>
+        <div id="d4-r3-price-wrap" style="display:none;"><div class="dl">3-Week Refill — Starting Price</div><input type="text" id="d4-refill3-price" placeholder="e.g. $95"></div>
+      </div>
     </div>
     <div class="svc-item">
       <p class="svc-name"><strong>Wispy / Kim K Set</strong> — Textured spikes mixed with volume fans for a wispy, staggered effect.</p>
-      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s9" value="yes" onchange="td('d9',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s9" value="no" onchange="td('d9',false)"><span>No</span></label></div>
-      <div class="svc-detail" id="d9"><div><div class="dl">Est. Duration</div><input type="text" id="d9-dur" placeholder="e.g. 120 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d9-price" placeholder="e.g. $125"></div></div>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s5" value="yes" onchange="td('d5',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s5" value="no" onchange="td('d5',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d5">
+        <div><div class="dl">Initial — Est. Duration</div><input type="text" id="d5-init-dur" placeholder="e.g. 120 min" oninput="checkRefillReveal(5)"></div>
+        <div><div class="dl">Initial — Starting Price</div><input type="text" id="d5-init-price" placeholder="e.g. $125" oninput="checkRefillReveal(5)"></div>
+        <div class="refill-divider" id="d5-r2-divider" style="display:none;">2-Week Refill</div>
+        <div id="d5-r2-dur-wrap" style="display:none;"><div class="dl">2-Week Refill — Est. Duration</div><input type="text" id="d5-refill2-dur" placeholder="e.g. 90 min" oninput="checkRefillReveal(5)"></div>
+        <div id="d5-r2-price-wrap" style="display:none;"><div class="dl">2-Week Refill — Starting Price</div><input type="text" id="d5-refill2-price" placeholder="e.g. $75" oninput="checkRefillReveal(5)"></div>
+        <div class="refill-divider" id="d5-r3-divider" style="display:none;">3-Week Refill</div>
+        <div id="d5-r3-dur-wrap" style="display:none;"><div class="dl">3-Week Refill — Est. Duration</div><input type="text" id="d5-refill3-dur" placeholder="e.g. 100 min"></div>
+        <div id="d5-r3-price-wrap" style="display:none;"><div class="dl">3-Week Refill — Starting Price</div><input type="text" id="d5-refill3-price" placeholder="e.g. $85"></div>
+      </div>
     </div>
     <div class="svc-item">
       <p class="svc-name"><strong>Wet Look / Glossy Set</strong> — Extensions styled to mimic a wet, glossy, piecey finish.</p>
-      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s10" value="yes" onchange="td('d10',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s10" value="no" onchange="td('d10',false)"><span>No</span></label></div>
-      <div class="svc-detail" id="d10"><div><div class="dl">Est. Duration</div><input type="text" id="d10-dur" placeholder="e.g. 120 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d10-price" placeholder="e.g. $120"></div></div>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s6" value="yes" onchange="td('d6',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s6" value="no" onchange="td('d6',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d6">
+        <div><div class="dl">Initial — Est. Duration</div><input type="text" id="d6-init-dur" placeholder="e.g. 120 min" oninput="checkRefillReveal(6)"></div>
+        <div><div class="dl">Initial — Starting Price</div><input type="text" id="d6-init-price" placeholder="e.g. $120" oninput="checkRefillReveal(6)"></div>
+        <div class="refill-divider" id="d6-r2-divider" style="display:none;">2-Week Refill</div>
+        <div id="d6-r2-dur-wrap" style="display:none;"><div class="dl">2-Week Refill — Est. Duration</div><input type="text" id="d6-refill2-dur" placeholder="e.g. 90 min" oninput="checkRefillReveal(6)"></div>
+        <div id="d6-r2-price-wrap" style="display:none;"><div class="dl">2-Week Refill — Starting Price</div><input type="text" id="d6-refill2-price" placeholder="e.g. $70" oninput="checkRefillReveal(6)"></div>
+        <div class="refill-divider" id="d6-r3-divider" style="display:none;">3-Week Refill</div>
+        <div id="d6-r3-dur-wrap" style="display:none;"><div class="dl">3-Week Refill — Est. Duration</div><input type="text" id="d6-refill3-dur" placeholder="e.g. 100 min"></div>
+        <div id="d6-r3-price-wrap" style="display:none;"><div class="dl">3-Week Refill — Starting Price</div><input type="text" id="d6-refill3-price" placeholder="e.g. $80"></div>
+      </div>
     </div>
     <div class="svc-item">
       <p class="svc-name"><strong>Cat Eye Set</strong> — Length concentrated at the outer corners for a lifted, elongated shape.</p>
-      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s11" value="yes" onchange="td('d11',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s11" value="no" onchange="td('d11',false)"><span>No</span></label></div>
-      <div class="svc-detail" id="d11"><div><div class="dl">Est. Duration</div><input type="text" id="d11-dur" placeholder="e.g. 105 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d11-price" placeholder="e.g. $110"></div></div>
-    </div>
-    <div class="svc-item">
-      <p class="svc-name"><strong>Natural / Textured Set</strong> — A soft, everyday-wearable set built for subtlety and texture.</p>
-      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s12" value="yes" onchange="td('d12',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s12" value="no" onchange="td('d12',false)"><span>No</span></label></div>
-      <div class="svc-detail" id="d12"><div><div class="dl">Est. Duration</div><input type="text" id="d12-dur" placeholder="e.g. 90 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d12-price" placeholder="e.g. $85"></div></div>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s7" value="yes" onchange="td('d7',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s7" value="no" onchange="td('d7',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d7">
+        <div><div class="dl">Initial — Est. Duration</div><input type="text" id="d7-init-dur" placeholder="e.g. 105 min" oninput="checkRefillReveal(7)"></div>
+        <div><div class="dl">Initial — Starting Price</div><input type="text" id="d7-init-price" placeholder="e.g. $110" oninput="checkRefillReveal(7)"></div>
+        <div class="refill-divider" id="d7-r2-divider" style="display:none;">2-Week Refill</div>
+        <div id="d7-r2-dur-wrap" style="display:none;"><div class="dl">2-Week Refill — Est. Duration</div><input type="text" id="d7-refill2-dur" placeholder="e.g. 75 min" oninput="checkRefillReveal(7)"></div>
+        <div id="d7-r2-price-wrap" style="display:none;"><div class="dl">2-Week Refill — Starting Price</div><input type="text" id="d7-refill2-price" placeholder="e.g. $65" oninput="checkRefillReveal(7)"></div>
+        <div class="refill-divider" id="d7-r3-divider" style="display:none;">3-Week Refill</div>
+        <div id="d7-r3-dur-wrap" style="display:none;"><div class="dl">3-Week Refill — Est. Duration</div><input type="text" id="d7-refill3-dur" placeholder="e.g. 90 min"></div>
+        <div id="d7-r3-price-wrap" style="display:none;"><div class="dl">3-Week Refill — Starting Price</div><input type="text" id="d7-refill3-price" placeholder="e.g. $75"></div>
+      </div>
     </div>
     <div class="svc-item">
       <p class="svc-name"><strong>Lash Removal</strong> — Safe removal of existing extensions using adhesive remover.</p>
-      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s13" value="yes" onchange="td('d13',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s13" value="no" onchange="td('d13',false)"><span>No</span></label></div>
-      <div class="svc-detail" id="d13"><div><div class="dl">Est. Duration</div><input type="text" id="d13-dur" placeholder="e.g. 30 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d13-price" placeholder="e.g. $25"></div></div>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s8" value="yes" onchange="td('d8',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s8" value="no" onchange="td('d8',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d8"><div><div class="dl">Est. Duration</div><input type="text" id="d8-dur" placeholder="e.g. 30 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d8-price" placeholder="e.g. $25"></div></div>
     </div>
     <div class="svc-item">
-      <p class="svc-name"><strong>Lash Lift &amp; Tint</strong> — Semi-permanent curl and tint treatment for natural lashes, no extensions.</p>
-      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s14" value="yes" onchange="td('d14',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s14" value="no" onchange="td('d14',false)"><span>No</span></label></div>
-      <div class="svc-detail" id="d14"><div><div class="dl">Est. Duration</div><input type="text" id="d14-dur" placeholder="e.g. 60 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d14-price" placeholder="e.g. $85"></div></div>
+      <p class="svc-name"><strong>Lash Lift & Tint</strong> — Semi-permanent curl and tint treatment for natural lashes, no extensions.</p>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s9" value="yes" onchange="td('d9',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s9" value="no" onchange="td('d9',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d9"><div><div class="dl">Est. Duration</div><input type="text" id="d9-dur" placeholder="e.g. 60 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d9-price" placeholder="e.g. $85"></div></div>
     </div>
     <div class="svc-item">
       <p class="svc-name"><strong>Brow Lamination</strong> — Restructuring treatment that sets brow hairs in a lifted, uniform direction.</p>
-      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s15" value="yes" onchange="td('d15',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s15" value="no" onchange="td('d15',false)"><span>No</span></label></div>
-      <div class="svc-detail" id="d15"><div><div class="dl">Est. Duration</div><input type="text" id="d15-dur" placeholder="e.g. 45 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d15-price" placeholder="e.g. $75"></div></div>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s10" value="yes" onchange="td('d10',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s10" value="no" onchange="td('d10',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d10"><div><div class="dl">Est. Duration</div><input type="text" id="d10-dur" placeholder="e.g. 45 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d10-price" placeholder="e.g. $75"></div></div>
     </div>
     <div class="svc-item">
       <p class="svc-name"><strong>Brow Tint</strong> — Semi-permanent dye to enhance brow color, depth, and definition.</p>
-      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s16" value="yes" onchange="td('d16',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s16" value="no" onchange="td('d16',false)"><span>No</span></label></div>
-      <div class="svc-detail" id="d16"><div><div class="dl">Est. Duration</div><input type="text" id="d16-dur" placeholder="e.g. 20 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d16-price" placeholder="e.g. $25"></div></div>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s11" value="yes" onchange="td('d11',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s11" value="no" onchange="td('d11',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d11"><div><div class="dl">Est. Duration</div><input type="text" id="d11-dur" placeholder="e.g. 20 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d11-price" placeholder="e.g. $25"></div></div>
     </div>
     <div class="svc-item">
-      <p class="svc-name"><strong>Lash &amp; Brow Combo</strong> — Any combination of lash and brow services booked together.</p>
-      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s17" value="yes" onchange="td('d17',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s17" value="no" onchange="td('d17',false)"><span>No</span></label></div>
-      <div class="svc-detail" id="d17"><div><div class="dl">Est. Duration</div><input type="text" id="d17-dur" placeholder="e.g. varies by combo"></div><div><div class="dl">Starting Price</div><input type="text" id="d17-price" placeholder="e.g. see individual services"></div></div>
+      <p class="svc-name"><strong>Lash & Brow Combo</strong> — Any combination of lash and brow services booked together.</p>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s12" value="yes" onchange="td('d12',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s12" value="no" onchange="td('d12',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d12"><div><div class="dl">Est. Duration</div><input type="text" id="d12-dur" placeholder="e.g. varies by combo"></div><div><div class="dl">Starting Price</div><input type="text" id="d12-price" placeholder="e.g. see individual services"></div></div>
     </div>
 
     <div class="field-group" style="margin-top:20px;">
@@ -269,7 +308,7 @@
       <textarea id="f-extra-services" placeholder="List any other lash or brow services you offer with estimated duration and starting price..." rows="3"></textarea>
     </div>
 
-    <div class="section-divider"><span>Your Style &amp; Specialty</span></div>
+<div class="section-divider"><span>Your Style &amp; Specialty</span></div>
 
     <div class="field-group">
       <label class="field-label">How would you describe your lash style in 3 words?</label>
@@ -456,6 +495,27 @@
   function gr(name) { const el = document.querySelector('input[name="'+name+'"]:checked'); return el ? el.value : ''; }
   function td(id, show) { const el = document.getElementById(id); if (el) el.classList.toggle('show', show); }
 
+  function checkRefillReveal(i) {
+    const initDur = document.getElementById('d'+i+'-init-dur');
+    const initPrice = document.getElementById('d'+i+'-init-price');
+    const r2Divider = document.getElementById('d'+i+'-r2-divider');
+    const r2DurWrap = document.getElementById('d'+i+'-r2-dur-wrap');
+    const r2PriceWrap = document.getElementById('d'+i+'-r2-price-wrap');
+    const r3Divider = document.getElementById('d'+i+'-r3-divider');
+    const r3DurWrap = document.getElementById('d'+i+'-r3-dur-wrap');
+    const r3PriceWrap = document.getElementById('d'+i+'-r3-price-wrap');
+    if (!initDur || !initPrice) return;
+
+    const initFilled = initDur.value.trim() && initPrice.value.trim();
+    [r2Divider, r2DurWrap, r2PriceWrap].forEach(el => { if (el) el.style.display = initFilled ? '' : 'none'; });
+
+    const r2Dur = document.getElementById('d'+i+'-refill2-dur');
+    const r2Price = document.getElementById('d'+i+'-refill2-price');
+    const refill2Filled = initFilled && r2Dur && r2Price && r2Dur.value.trim() && r2Price.value.trim();
+    [r3Divider, r3DurWrap, r3PriceWrap].forEach(el => { if (el) el.style.display = refill2Filled ? '' : 'none'; });
+  }
+
+
   function submitForm() {
     const sigName = gv('sig-name');
     if (!sigName) { alert('Please type your full legal name to complete your signature.'); return; }
@@ -506,16 +566,33 @@
       field('Origin Story', gv('f-origin'));
 
       
-      const svcDefs = [
-        ['s1','Classic Full Set'],['s2','Classic Fill'],['s3','Hybrid Full Set'],['s4','Hybrid Fill'],
-        ['s5','Volume Full Set'],['s6','Volume Fill'],['s7','Mega Volume Full Set'],['s8','Mega Volume Fill'],
-        ['s9','Wispy / Kim K Set'],['s10','Wet Look / Glossy Set'],['s11','Cat Eye Set'],['s12','Natural / Textured Set'],
-        ['s13','Lash Removal'],['s14','Lash Lift & Tint'],['s15','Brow Lamination'],['s16','Brow Tint'],
-        ['s17','Lash & Brow Combo']
+      const setStyles = [
+        ['s1','Classic Full Set'],['s2','Hybrid Full Set'],['s3','Volume Full Set'],['s4','Mega Volume Full Set'],
+        ['s5','Wispy / Kim K Set'],['s6','Wet Look / Glossy Set'],['s7','Cat Eye Set']
+      ];
+      const oneTimeServices = [
+        ['s8','Lash Removal'],['s9','Lash Lift & Tint'],['s10','Brow Lamination'],['s11','Brow Tint'],['s12','Lash & Brow Combo']
       ];
 
       heading('Services & Pricing');
-      svcDefs.forEach(function(pair) {
+      setStyles.forEach(function(pair) {
+        const key = pair[0], name = pair[1];
+        const offering = gr(key);
+        const num = key.replace('s','');
+        if (offering === 'yes') {
+          let val = 'Offering this service';
+          const iDur = gv('d'+num+'-init-dur'), iPrice = gv('d'+num+'-init-price');
+          const r2Dur = gv('d'+num+'-refill2-dur'), r2Price = gv('d'+num+'-refill2-price');
+          const r3Dur = gv('d'+num+'-refill3-dur'), r3Price = gv('d'+num+'-refill3-price');
+          val += '\n  Initial: ' + (iDur||'not specified') + ' / ' + (iPrice||'not specified');
+          if (r2Dur || r2Price) val += '\n  2-Week Refill: ' + (r2Dur||'not specified') + ' / ' + (r2Price||'not specified');
+          if (r3Dur || r3Price) val += '\n  3-Week Refill: ' + (r3Dur||'not specified') + ' / ' + (r3Price||'not specified');
+          field(name, val);
+        } else if (offering === 'no') {
+          field(name, 'Not offering');
+        }
+      });
+      oneTimeServices.forEach(function(pair) {
         const key = pair[0], name = pair[1];
         const offering = gr(key);
         const num = key.replace('s','');
