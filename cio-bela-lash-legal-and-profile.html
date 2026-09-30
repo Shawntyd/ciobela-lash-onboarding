@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cio Bela — Lash Artist Legal & Profile Catch-Up</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --ink: #1A1714;
+    --gold: #C9A96E;
+    --gold-light: rgba(201,169,110,0.15);
+    --warm-mid: #8C7B68;
+    --rule: rgba(201,169,110,0.3);
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--cream); color: var(--ink);
+    font-family: 'DM Mono', monospace; font-weight: 300;
+    min-height: 100vh; padding: 40px 20px 80px;
+  }
+  .container { max-width: 680px; margin: 0 auto; }
+
+  .progress-wrap { margin-bottom: 40px; }
+  .progress-label {
+    display: flex; justify-content: space-between;
+    font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--warm-mid); margin-bottom: 10px;
+  }
+  .progress-track { height: 1px; background: var(--rule); }
+  .progress-fill { height: 100%; background: var(--gold); transition: width 0.5s ease; }
+  .progress-dots { display: flex; justify-content: space-between; margin-top: -5px; }
+  .progress-dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--cream); border: 1px solid var(--rule); transition: all 0.3s;
+  }
+  .progress-dot.active { background: var(--gold); border-color: var(--gold); }
+  .progress-dot.done { background: var(--gold); border-color: var(--gold); opacity: 0.5; }
+
+  .step { display: none; animation: rise 0.5s ease forwards; }
+  .step.active { display: block; }
+  @keyframes rise { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+
+  .step-header { border-bottom: 1px solid var(--rule); padding-bottom: 24px; margin-bottom: 32px; }
+  .step-tag { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .step-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px,5vw,38px); font-weight: 300; line-height: 1.15; }
+  .step-title em { font-style: italic; color: var(--gold); }
+  .step-desc { margin-top: 12px; font-size: 11.5px; line-height: 1.75; color: var(--warm-mid); }
+
+  .field-group { margin-bottom: 24px; }
+  .field-label { display: block; font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--warm-mid); margin-bottom: 8px; }
+  .field-label .req { color: var(--gold); margin-left: 3px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .field-sub { font-size: 10.5px; color: var(--warm-mid); line-height: 1.65; margin-bottom: 12px; }
+
+  input[type="text"], input[type="email"], input[type="tel"],
+  input[type="url"], input[type="number"], select, textarea {
+    width: 100%; background: var(--white);
+    border: 1px solid rgba(138,123,104,0.3); color: var(--ink);
+    font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 300;
+    padding: 13px 15px; outline: none; transition: border-color 0.2s;
+    -webkit-appearance: none; appearance: none; border-radius: 0;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--gold); }
+  textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+  select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238C7B68' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
+  }
+
+  .policy-block {
+    background: var(--white); border: 1px solid var(--rule);
+    padding: 22px; margin-bottom: 22px; max-height: 340px; overflow-y: auto;
+  }
+  .policy-block::-webkit-scrollbar { width: 4px; }
+  .policy-block::-webkit-scrollbar-thumb { background: var(--gold); }
+  .ph { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-mid); margin-bottom: 14px; }
+  .policy-block p { font-size: 11px; line-height: 1.75; color: var(--ink); margin-bottom: 10px; }
+  .pt { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 600; margin: 18px 0 8px; color: var(--ink); }
+  .pt:first-child { margin-top: 0; }
+  .policy-block ul { list-style: none; padding: 0; margin-bottom: 10px; }
+  .policy-block ul li { font-size: 11px; line-height: 1.7; color: var(--ink); padding-left: 14px; position: relative; margin-bottom: 5px; }
+  .policy-block ul li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 10px; }
+  .policy-block ol { padding-left: 18px; margin-bottom: 10px; }
+  .policy-block ol li { font-size: 11px; line-height: 1.7; color: var(--ink); margin-bottom: 5px; }
+  .policy-block strong { font-weight: 400; }
+
+  .checkbox-wrap {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 18px; background: var(--gold-light); border: 1px solid var(--rule);
+    margin-bottom: 24px; cursor: pointer;
+  }
+  .checkbox-wrap input[type="checkbox"] {
+    width: 18px; height: 18px; min-width: 18px;
+    border: 1px solid var(--gold); background: var(--white);
+    appearance: none; -webkit-appearance: none;
+    cursor: pointer; position: relative; margin-top: 2px; padding: 0;
+  }
+  .checkbox-wrap input[type="checkbox"]:checked { background: var(--gold); }
+  .checkbox-wrap input[type="checkbox"]:checked::after {
+    content: '✓'; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%); color: var(--white); font-size: 11px;
+  }
+  .checkbox-text { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-style: italic; line-height: 1.65; color: var(--ink); }
+
+  .radio-group { display: flex; flex-direction: column; gap: 10px; }
+  .radio-option {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 13px 15px; background: var(--white);
+    border: 1px solid rgba(138,123,104,0.3); cursor: pointer; transition: border-color 0.2s;
+  }
+  .radio-option:hover { border-color: var(--gold); }
+  .radio-option input[type="radio"] {
+    width: 15px; height: 15px; min-width: 15px;
+    border: 1px solid var(--gold); background: var(--white);
+    appearance: none; -webkit-appearance: none; border-radius: 50%;
+    cursor: pointer; position: relative; padding: 0; margin-top: 3px;
+  }
+  .radio-option input[type="radio"]:checked::after {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%); width: 7px; height: 7px;
+    border-radius: 50%; background: var(--gold);
+  }
+  .radio-label { font-size: 12px; color: var(--ink); line-height: 1.5; }
+  .radio-label em { font-style: italic; color: var(--warm-mid); display: block; font-size: 10.5px; margin-top: 3px; }
+
+  .multi-check { display: flex; flex-direction: column; gap: 10px; }
+  .mco {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 13px 15px; background: var(--white);
+    border: 1px solid rgba(138,123,104,0.3); cursor: pointer;
+  }
+  .mco input[type="checkbox"] {
+    width: 15px; height: 15px; min-width: 15px;
+    border: 1px solid var(--gold); background: var(--white);
+    appearance: none; -webkit-appearance: none;
+    cursor: pointer; position: relative; padding: 0; margin-top: 3px;
+  }
+  .mco input[type="checkbox"]:checked { background: var(--gold); }
+  .mco input[type="checkbox"]:checked::after {
+    content: '✓'; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%); color: var(--white); font-size: 10px;
+  }
+  .mco-label { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-style: italic; line-height: 1.6; color: var(--ink); }
+
+  .section-divider { display: flex; align-items: center; gap: 12px; margin: 28px 0 18px; }
+  .section-divider span { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+  .section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+  .svc-item { background: var(--white); border: 1px solid rgba(138,123,104,0.2); padding: 16px; margin-bottom: 12px; }
+  .svc-name { font-size: 11.5px; line-height: 1.6; color: var(--ink); margin-bottom: 10px; }
+  .svc-name strong { font-weight: 400; }
+  .yn-row { display: flex; gap: 20px; margin-bottom: 8px; }
+  .yn-opt { display: flex; align-items: center; gap: 7px; cursor: pointer; }
+  .yn-opt input[type="radio"] {
+    width: 14px; height: 14px; min-width: 14px;
+    border: 1px solid var(--gold); background: var(--white);
+    appearance: none; -webkit-appearance: none; border-radius: 50%;
+    cursor: pointer; position: relative; padding: 0;
+  }
+  .yn-opt input[type="radio"]:checked::after {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%); width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+  }
+  .yn-opt span { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; color: var(--ink); }
+  .svc-detail { display: none; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+  .svc-detail.show { display: grid; }
+  .svc-detail input { font-size: 11px; padding: 10px 12px; }
+  .dl { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm-mid); margin-bottom: 4px; }
+
+  .nav-row { display: flex; gap: 12px; margin-top: 36px; }
+  .btn-back {
+    flex: 1; padding: 14px; background: transparent;
+    border: 1px solid rgba(138,123,104,0.4); color: var(--warm-mid);
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-back:hover { border-color: var(--ink); color: var(--ink); }
+  .btn-next {
+    flex: 2; padding: 14px; background: var(--ink); border: 1px solid var(--ink); color: var(--cream);
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-next:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+  .btn-submit {
+    flex: 2; padding: 14px; background: var(--gold); border: 1px solid var(--gold); color: var(--ink);
+    font-family: 'DM Mono', monospace; font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-submit:hover { background: var(--ink); border-color: var(--ink); color: var(--gold); }
+
+  .sig-block { background: var(--white); border: 1px solid var(--rule); padding: 28px; margin-bottom: 24px; }
+  .sig-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+  .sig-desc { font-size: 11px; line-height: 1.75; color: var(--warm-mid); margin-bottom: 20px; }
+  .sig-canvas-wrap { position: relative; margin-bottom: 10px; }
+  #sig-canvas {
+    width: 100%; height: 140px; border: 1px solid rgba(138,123,104,0.4);
+    background: #FDFAF5; cursor: crosshair; display: block; touch-action: none;
+  }
+  .sig-clear {
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--warm-mid); background: none; border: none; cursor: pointer;
+    padding: 6px 0; text-decoration: underline;
+  }
+  .sig-clear:hover { color: var(--ink); }
+  .sig-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; }
+  .sig-date { font-size: 11px; color: var(--warm-mid); margin-top: 8px; }
+  .legal-statement {
+    background: var(--gold-light); border: 1px solid var(--rule);
+    padding: 20px; margin-bottom: 24px; font-size: 11px; line-height: 1.8; color: var(--ink);
+  }
+  .legal-statement strong { font-weight: 400; color: var(--ink); }
+
+  .success-screen { display: none; text-align: center; padding: 60px 20px; }
+  .success-screen.active { display: block; animation: rise 0.6s ease forwards; }
+  .success-icon {
+    width: 56px; height: 56px; border: 1px solid var(--gold); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 28px; font-size: 22px; color: var(--gold);
+  }
+  .success-title { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 300; line-height: 1.15; margin-bottom: 16px; }
+  .success-title em { font-style: italic; color: var(--gold); }
+  .success-desc { font-size: 12px; color: var(--warm-mid); line-height: 1.75; max-width: 420px; margin: 0 auto; }
+
+  @media (max-width: 480px) { .field-row { grid-template-columns: 1fr; } .svc-detail { grid-template-columns: 1fr; } .sig-fields { grid-template-columns: 1fr; } }
+</style><div class="container">
+
+  <div class="progress-wrap" id="progress-wrap">
+    <div class="progress-label">
+      <span id="step-label">Step 1 of 5</span>
+      <span id="step-name">General Information</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill" style="width:20%"></div>
+    </div>
+    <div class="progress-dots">
+      <div class="progress-dot active" id="dot-1"></div>
+      <div class="progress-dot" id="dot-2"></div>
+      <div class="progress-dot" id="dot-3"></div>
+      <div class="progress-dot" id="dot-4"></div>
+      <div class="progress-dot" id="dot-5"></div>
+    </div>
+  </div>
+
+  <!-- STEP 1: General Information -->
+  <div class="step active" id="step-1">
+    <div class="step-header">
+      <div class="step-tag">Lash Artist Catch-Up</div>
+      <h1 class="step-title">General<br><em>Information</em></h1>
+      <p class="step-desc">Let's start with the basics. This one link covers everything you missed at onboarding, plus your artist profile — all in one go.</p>
+    </div>
+    <div class="field-group">
+      <label class="field-label">Full Legal Name <span class="req">*</span></label>
+      <input type="text" id="f-fullname" placeholder="Your legal full name">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Email Address <span class="req">*</span></label>
+      <input type="email" id="f-email" placeholder="your@email.com">
+    </div>
+    <div class="nav-row">
+      <button class="btn-next" onclick="goToStep(2)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: Legal Agreements (all 5 clauses) -->
+  <div class="step" id="step-2">
+    <div class="step-header">
+      <div class="step-tag">Documents 01–05</div>
+      <h1 class="step-title">Legal<br><em>Agreements</em></h1>
+      <p class="step-desc">These five agreements are a required part of every Cio Bela artist's onboarding — please read and confirm each one below.</p>
+    </div>
+    <div class="section-divider"><span>Document 01</span></div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-bottom:14px;">Shared Lash Station Agreement</h2>
+    <div class="policy-block">
+      <p class="ph">The Collaborative Vision</p>
+      <p>We are building the lash department of Cio Bela together. This agreement is a living document intended to ensure that our shared station remains professional, hygienic, and inspiring for every artist who works within it. As we grow, we will refine these standards as a team.</p>
+
+      <p class="pt">1. Professionalism &amp; Aesthetic</p>
+      <ul>
+        <li><strong>Station Presentation:</strong> Each lash artist is responsible for keeping their designated area organized, clean, and visually aligned with the salon's brand between and after all appointments.</li>
+        <li><strong>Atmosphere:</strong> We agree to maintain a professional tone and a welcoming, private environment for all clients.</li>
+        <li><strong>Personal Branding:</strong> You are encouraged to market your unique style and approach; however, any permanent changes to the physical suite must be discussed with the collective.</li>
+        <li><strong>Client Privacy:</strong> The lash station is an intimate service environment. We commit to ensuring client privacy and dignity at all times — including proper draping, controlled suite access during services, and discretion in all client communications.</li>
+      </ul>
+
+      <p class="pt">2. Shared Station Stewardship</p>
+      <ul>
+        <li><strong>Common Areas:</strong> The restroom and waiting area are shared. We agree to "leave it better than we found it" to ensure a high-end experience for every guest.</li>
+        <li><strong>Adhesive Residue &amp; Cleanliness:</strong> Adhesive residue on surfaces or trays must be addressed immediately after each client. It is each artist's responsibility to remove all adhesive drips, used micro-brushes, and debris from shared equipment before the next artist uses the station.</li>
+        <li><strong>Turnover:</strong> Every lash artist is responsible for fully sanitizing the lash bed, tray, and surrounding surfaces between every appointment. The suite must be left in ready-to-use condition for any artist who follows.</li>
+        <li><strong>Adhesive Care:</strong> Adhesive must be capped tightly and stored in a cool, dry, airtight container after each use to preserve shelf life and prevent fume buildup in the shared station.</li>
+      </ul>
+
+      <p class="pt">3. Logistics &amp; Access</p>
+      <ul>
+        <li><strong>Entry:</strong> Each artist will have keyed access. We agree to ensure the building is fully secured and all non-essential lights and equipment are turned off when the last person leaves.</li>
+        <li><strong>Client Flow:</strong> We will respect the privacy of the floor. If a client arrives early, we will guide them to the designated waiting area — not the lash station — until the artist is ready to receive them.</li>
+        <li><strong>Guest Policy:</strong> Lash artists must communicate their individual policies regarding children or extra guests to their clients in advance. Due to the intimate nature of lash services, additional guests are generally discouraged at the station during treatments.</li>
+        <li><strong>Friends &amp; Family:</strong> To maintain a focused, professional environment, friends and family members of lash artists are not permitted to occupy the salon unless they are present to receive a service.</li>
+      </ul>
+
+      <p class="pt">4. Supplies &amp; Inventory</p>
+      <ul>
+        <li><strong>Storage:</strong> Each artist is allocated their own designated space for personal supply storage. Items left on shared surfaces or in common areas may be moved to ensure suite safety and cleanliness.</li>
+        <li><strong>Shared Equipment:</strong> Any shared warming units, trolleys, or suite furniture must be treated with care and returned to their designated positions after each use.</li>
+        <li><strong>Disposables:</strong> Each artist is responsible for managing their own gel pads, micro-brushes, tape, and disposable liners. Shared laundry facilities are available for headrest linens; please move loads promptly.</li>
+      </ul>
+
+      <p class="pt">5. Conflict &amp; Resolution</p>
+      <p>Because we are building this together, we agree to open and honest communication. Any friction regarding suite scheduling, supplies, noise, or shared space will be handled privately and professionally between the parties involved, or brought to management for a group discussion.</p>
+
+      <p class="pt">6. Cancellations &amp; Calling Out</p>
+      <p>As an independent business owner, you are fully responsible for managing your own schedule and client communications. If you are unable to come in, it is your sole responsibility to contact your clients directly and in a timely manner to inform them and arrange rescheduling. The salon is not responsible for notifying your clients on your behalf. Consistent failure to handle cancellations and rescheduling in a professional and timely manner reflects on the salon as a whole. The salon reserves the right to terminate your rental agreement if this standard is not upheld on a consistent basis.</p>
+
+      <p class="pt">7. Texas Compliance (TDLR)</p>
+      <p>We collectively agree to keep the suite "Inspection Ready" at all times. Please ensure a copy of your current license and a government-issued photo ID are available for inspection at all times. Proper labeling of "Clean" versus "Dirty" implements and strict adherence to single-use policies are non-negotiable standards in our shared environment.</p>
+    </div>
+    <div class="checkbox-wrap"><input type="checkbox" id="agree-space"><label class="checkbox-text" for="agree-space">I have read and understood the Shared Lash Station Agreement. I agree to uphold these professional standards, maintain my work area in accordance with TDLR safety protocols, and participate in the collaborative growth of our lash studio.</label></div>
+
+    <div class="section-divider"><span>Document 02</span></div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-bottom:14px;">Daily Stewardship Checklist</h2>
+    <div class="policy-block">
+      <p class="pt">Opening Procedures — "The Set Up for Success"</p>
+      <ul>
+        <li><strong>Lights &amp; Atmosphere:</strong> Turn on all suite lighting. Ensure the music or ambient playlist is at an appropriate, relaxing volume.</li>
+        <li><strong>Adhesive Prep:</strong> Open a fresh adhesive dot and confirm it is within the correct temperature and humidity range for optimal bonding before your first appointment.</li>
+        <li><strong>Station Prep:</strong> Verify the lash bed is fully sanitized, fitted with a clean liner, and all supplies (gel pads, tape, lash trays, tweezers) are stocked and within reach.</li>
+        <li><strong>Waiting Area Check:</strong> Straighten any shared seating or décor. Ensure the check-in area is tidy and welcoming.</li>
+        <li><strong>Restroom Check:</strong> Verify it is clean, stocked with toilet paper and hand towels, and the trash is empty.</li>
+      </ul>
+
+      <p class="pt">Between Every Client — "The Turnover"</p>
+      <ul>
+        <li><strong>Station Reset:</strong> Remove and dispose of all used gel pads, tape, and micro-brushes immediately. Replace with fresh disposables before the next client.</li>
+        <li><strong>Surface Sanitation:</strong> Wipe down the lash bed, trolley, and any shared surfaces with an EPA-registered, hospital-grade disinfectant after every single appointment.</li>
+        <li><strong>Adhesive Residue Removal:</strong> Clear all adhesive residue from the lash tile, jade stone, and immediate work area. Do not leave residue for the next artist.</li>
+        <li><strong>Implements:</strong> Remove all used or contaminated tools from the work surface immediately. Single-use items go directly in the lined waste bin — never set aside for reuse.</li>
+        <li><strong>Hand Hygiene:</strong> Wash hands thoroughly with soap and water or use 70% alcohol-based sanitizer before receiving the next client.</li>
+      </ul>
+
+      <p class="pt">Throughout the Day — "The Flow"</p>
+      <ul>
+        <li><strong>Waste Management:</strong> Empty your personal station waste bin before it becomes full. Double-bag any adhesive-saturated or bodily-fluid-contaminated waste.</li>
+        <li><strong>Adhesive Monitoring:</strong> Replace the adhesive dot every 15–20 minutes throughout the day to maintain proper bonding strength and prevent using adhesive past its working window.</li>
+        <li><strong>Linen Rotation:</strong> If a load of headrest covers is dry, fold them and put them away; move the next load to the dryer.</li>
+      </ul>
+
+      <p class="pt">Closing Procedures — "The Clean Slate"</p>
+      <ul>
+        <li><strong>Adhesive Shutdown:</strong> Cap all adhesive bottles tightly and store in a cool, dry, airtight container.</li>
+        <li><strong>Full Surface Wipe-Down:</strong> Perform a final sanitation of the lash bed, trolley, and all hard surfaces touched during the day.</li>
+        <li><strong>Waste Disposal:</strong> Empty the station waste bin into the main dumpster. Replace with a fresh liner.</li>
+        <li><strong>Linen Check:</strong> Confirm all soiled headrest covers are in the laundry. No used linens should remain at the station overnight.</li>
+        <li><strong>Supplies Stocked:</strong> Restock any low supplies (gel pads, tape, micro-brushes, adhesive) so the station is ready for the next artist who opens.</li>
+        <li><strong>Final Walkthrough:</strong> Lights off, station is clean, adhesive is capped, and the front door is locked.</li>
+      </ul>
+    </div>
+    <div class="checkbox-wrap"><input type="checkbox" id="agree-checklist"><label class="checkbox-text" for="agree-checklist">I agree to follow the Daily Stewardship Checklist to ensure our shared lash studio remains professional, sanitary, and welcoming for all clients and artists. I understand that the cleanliness and safety of our station is a collective responsibility, and I commit to doing my part to maintain our shared workspace at the highest standard.</label></div>
+
+    <div class="section-divider"><span>Document 03</span></div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-bottom:14px;">Texas Safety &amp; Compliance Protocols</h2>
+    <div class="policy-block">
+      <p class="pt">1. Licensing &amp; ID (Texas Law)</p>
+      <ul>
+        <li><strong>Visibility:</strong> Your current Texas Cosmetology or Esthetician license must be displayed at your workstation in public view at all times.</li>
+        <li><strong>Identification:</strong> You must have a government-issued photo ID available at the salon for inspection by TDLR at any time.</li>
+        <li><strong>Updates:</strong> You are responsible for notifying the Owner of any license renewals to keep our master Salon Renter List current.</li>
+      </ul>
+
+      <p class="pt">2. Client Intake &amp; Contraindications</p>
+      <ul>
+        <li><strong>Pre-Service Consultation:</strong> Every new client must complete a client intake form prior to their first service. This form must document known adhesive sensitivities, current medications, eye conditions, and any known contraindications.</li>
+        <li><strong>Contraindication Screening:</strong> You are responsible for refusing or modifying service for any client presenting with contraindications including, but not limited to: known adhesive/cyanoacrylate allergies, active eye infections, recent eye surgery, or any condition affecting the eye area.</li>
+        <li><strong>Patch Tests:</strong> A patch test is strongly recommended for all new clients and any client who has changed their skincare routine, medications, or reported new sensitivities since their last visit.</li>
+      </ul>
+
+      <p class="pt">3. Infection Control &amp; Sanitation</p>
+      <ul>
+        <li><strong>Hand Hygiene:</strong> Wash hands with soap and water or use a 70% alcohol-based sanitizer before and after every client, without exception.</li>
+        <li><strong>Surface Disinfection:</strong> All non-porous surfaces — including the lash bed, trolley, and tray — must be cleaned and disinfected with an EPA-registered, hospital-grade disinfectant between every client.</li>
+        <li><strong>Single-Use Strict Policy:</strong> All gel pads, micro-brushes, and tape are strictly single-use and must be discarded immediately after one application. Reusing single-use adhesive applicators between clients is a TDLR violation and a contamination risk.</li>
+        <li><strong>Headrest Coverings:</strong> A fresh disposable headrest cover or a clean linen must be used for every single client. Used coverings must be removed and disposed of immediately after each appointment.</li>
+        <li><strong>Isolation Standard:</strong> Every natural lash must be individually isolated prior to extension application. Lash-to-lash bonding ("stickies") is a safety violation and grounds for formal review.</li>
+      </ul>
+
+      <p class="pt">4. Adhesive Application Safety</p>
+      <ul>
+        <li><strong>Dot Replacement:</strong> Adhesive dots must be replaced every 15–20 minutes during service to maintain proper bonding and prevent using adhesive past its working window.</li>
+        <li><strong>Eye Protection:</strong> Under-eye gel pads must fully cover and protect the lower lash line at all times during application. Adhesive must never be applied in amounts that risk skin or eye contact.</li>
+        <li><strong>Ventilation:</strong> Adequate ventilation must be maintained at your station at all times during adhesive use. N95 masks are strongly recommended.</li>
+      </ul>
+
+      <p class="pt">5. Chemical Safety</p>
+      <ul>
+        <li><strong>SDS Binder:</strong> All artists must provide a Safety Data Sheet (SDS) for any professional adhesive, primer, or chemical preparations they bring into the salon.</li>
+        <li><strong>Pre- and Post-Care Products:</strong> Any pre-treatment cleansers, primers, or aftercare products used on clients must be professional-grade and applied in accordance with manufacturer guidelines.</li>
+        <li><strong>Storage:</strong> All products must be stored in their original containers, properly labeled, and kept away from direct heat or open flames.</li>
+      </ul>
+
+      <p class="pt">6. Eye or Skin Contact Exposure Procedure</p>
+      <p>If adhesive contacts a client's eye or skin during a service, the following protocol must be followed immediately:</p>
+      <ol>
+        <li>Stop the service immediately.</li>
+        <li>Flush the affected area with clean water for 15 minutes.</li>
+        <li>Refer to emergency care if irritation persists.</li>
+        <li>Document the incident and notify Cio Bela management immediately.</li>
+        <li>Clean and disinfect all tools and surfaces before resuming service or before the next client.</li>
+      </ol>
+    </div>
+    <div class="checkbox-wrap"><input type="checkbox" id="agree-compliance"><label class="checkbox-text" for="agree-compliance">I acknowledge that I have received and reviewed the Texas Safety &amp; Compliance Protocols for Lash Extension Services. I agree to maintain my workspace and professional practices in strict accordance with TDLR Health &amp; Safety standards. I understand that protecting my license, my clients, and the integrity of our shared station is a non-negotiable condition of my tenancy at Cio Bela Salons.</label></div>
+
+    <div class="section-divider"><span>Document 04</span></div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-bottom:14px;">1099 Independent Contractor Tax Acknowledgment</h2>
+    <div class="checkbox-wrap"><input type="checkbox" id="agree-tax"><label class="checkbox-text" for="agree-tax">1099 Independent Contractor Tax Acknowledgment: I understand that I am operating as an independent 1099 contractor and am solely responsible for reporting and paying my own federal, state, and local taxes. I acknowledge that Cio Bela Salons will not withhold taxes on my behalf, will not provide me with a W-2, and is not my employer. I agree to provide a completed W-9 form upon request and understand that a 1099-NEC may be issued to me at the end of the tax year if applicable.</label></div>
+
+    <div class="section-divider"><span>Document 05</span></div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-bottom:14px;">Liability Waiver &amp; Insurance Requirement</h2>
+    <div class="checkbox-wrap"><input type="checkbox" id="agree-liability"><label class="checkbox-text" for="agree-liability">Liability Waiver &amp; Insurance Requirement: I understand and agree that Cio Bela Salons is not liable for any injuries, reactions, skin sensitivities, burns, or damages sustained by my clients as a result of the services I perform. As an independent contractor, I am solely responsible for the safety, quality, and outcome of my work, and I agree to conduct all services in accordance with TDLR health and safety standards. I understand that carrying active professional liability insurance is a requirement of renting at this location. Cio Bela Salons will assist me in identifying and setting up an appropriate policy; however, the cost of obtaining and maintaining this insurance is my sole financial responsibility. I agree to provide proof of active coverage upon request and to keep my policy current for the duration of my time at the salon.</label></div>
+
+    
+    <div class="nav-row">
+      <button class="btn-back" onclick="goToStep(1)">← Back</button>
+      <button class="btn-next" onclick="goToStep(3)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: Services & Pricing -->
+  <div class="step" id="step-3">
+    <div class="step-header">
+      <div class="step-tag">Document 06</div>
+      <h1 class="step-title">Services &<br><em>Pricing</em></h1>
+      <p class="step-desc">Indicate which lash sets and services you offer. This builds your public booking profile.</p>
+    </div>
+    <div class="section-divider"><span>Services &amp; Pricing</span></div>
+    <p class="field-sub" style="margin-bottom:16px;">Indicate which lash sets you offer. For every Yes, fill in your Initial set pricing, then your 2-Week Refill, then your 3-Week Refill.</p>
+
+    <div class="svc-item">
+      <p class="svc-name"><strong>Classic Full Set</strong> — One extension per natural lash for a natural, mascara-like look.</p>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s1" value="yes" onchange="td('d1',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s1" value="no" onchange="td('d1',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d1">
+        <div><div class="dl">Initial — Est. Duration</div><input type="text" id="d1-init-dur" placeholder="e.g. 90 min" oninput="checkRefillReveal(1)"></div>
+        <div><div class="dl">Initial — Starting Price</div><input type="text" id="d1-init-price" placeholder="e.g. $90" oninput="checkRefillReveal(1)"></div>
+        <div class="refill-divider" id="d1-r2-divider" style="display:none;">2-Week Refill</div>
+        <div id="d1-r2-dur-wrap" style="display:none;"><div class="dl">2-Week Refill — Est. Duration</div><input type="text" id="d1-refill2-dur" placeholder="e.g. 60 min" oninput="checkRefillReveal(1)"></div>
+        <div id="d1-r2-price-wrap" style="display:none;"><div class="dl">2-Week Refill — Starting Price</div><input type="text" id="d1-refill2-price" placeholder="e.g. $55" oninput="checkRefillReveal(1)"></div>
+        <div class="refill-divider" id="d1-r3-divider" style="display:none;">3-Week Refill</div>
+        <div id="d1-r3-dur-wrap" style="display:none;"><div class="dl">3-Week Refill — Est. Duration</div><input type="text" id="d1-refill3-dur" placeholder="e.g. 75 min"></div>
+        <div id="d1-r3-price-wrap" style="display:none;"><div class="dl">3-Week Refill — Starting Price</div><input type="text" id="d1-refill3-price" placeholder="e.g. $65"></div>
+      </div>
+    </div>
+    <div class="svc-item">
+      <p class="svc-name"><strong>Hybrid Full Set</strong> — A mix of classic and volume fans for texture with natural density.</p>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s2" value="yes" onchange="td('d2',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s2" value="no" onchange="td('d2',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d2">
+        <div><div class="dl">Initial — Est. Duration</div><input type="text" id="d2-init-dur" placeholder="e.g. 105 min" oninput="checkRefillReveal(2)"></div>
+        <div><div class="dl">Initial — Starting Price</div><input type="text" id="d2-init-price" placeholder="e.g. $105" oninput="checkRefillReveal(2)"></div>
+        <div class="refill-divider" id="d2-r2-divider" style="display:none;">2-Week Refill</div>
+        <div id="d2-r2-dur-wrap" style="display:none;"><div class="dl">2-Week Refill — Est. Duration</div><input type="text" id="d2-refill2-dur" placeholder="e.g. 75 min" oninput="checkRefillReveal(2)"></div>
+        <div id="d2-r2-price-wrap" style="display:none;"><div class="dl">2-Week Refill — Starting Price</div><input type="text" id="d2-refill2-price" placeholder="e.g. $65" oninput="checkRefillReveal(2)"></div>
+        <div class="refill-divider" id="d2-r3-divider" style="display:none;">3-Week Refill</div>
+        <div id="d2-r3-dur-wrap" style="display:none;"><div class="dl">3-Week Refill — Est. Duration</div><input type="text" id="d2-refill3-dur" placeholder="e.g. 90 min"></div>
+        <div id="d2-r3-price-wrap" style="display:none;"><div class="dl">3-Week Refill — Starting Price</div><input type="text" id="d2-refill3-price" placeholder="e.g. $75"></div>
+      </div>
+    </div>
+    <div class="svc-item">
+      <p class="svc-name"><strong>Volume Full Set</strong> — Multiple lightweight extensions fanned per natural lash for fuller density.</p>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s3" value="yes" onchange="td('d3',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s3" value="no" onchange="td('d3',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d3">
+        <div><div class="dl">Initial — Est. Duration</div><input type="text" id="d3-init-dur" placeholder="e.g. 120 min" oninput="checkRefillReveal(3)"></div>
+        <div><div class="dl">Initial — Starting Price</div><input type="text" id="d3-init-price" placeholder="e.g. $120" oninput="checkRefillReveal(3)"></div>
+        <div class="refill-divider" id="d3-r2-divider" style="display:none;">2-Week Refill</div>
+        <div id="d3-r2-dur-wrap" style="display:none;"><div class="dl">2-Week Refill — Est. Duration</div><input type="text" id="d3-refill2-dur" placeholder="e.g. 90 min" oninput="checkRefillReveal(3)"></div>
+        <div id="d3-r2-price-wrap" style="display:none;"><div class="dl">2-Week Refill — Starting Price</div><input type="text" id="d3-refill2-price" placeholder="e.g. $70" oninput="checkRefillReveal(3)"></div>
+        <div class="refill-divider" id="d3-r3-divider" style="display:none;">3-Week Refill</div>
+        <div id="d3-r3-dur-wrap" style="display:none;"><div class="dl">3-Week Refill — Est. Duration</div><input type="text" id="d3-refill3-dur" placeholder="e.g. 100 min"></div>
+        <div id="d3-r3-price-wrap" style="display:none;"><div class="dl">3-Week Refill — Starting Price</div><input type="text" id="d3-refill3-price" placeholder="e.g. $80"></div>
+      </div>
+    </div>
+    <div class="svc-item">
+      <p class="svc-name"><strong>Mega Volume Full Set</strong> — Ultra-fine, high-fan-count extensions for maximum density and drama.</p>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s4" value="yes" onchange="td('d4',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s4" value="no" onchange="td('d4',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d4">
+        <div><div class="dl">Initial — Est. Duration</div><input type="text" id="d4-init-dur" placeholder="e.g. 135 min" oninput="checkRefillReveal(4)"></div>
+        <div><div class="dl">Initial — Starting Price</div><input type="text" id="d4-init-price" placeholder="e.g. $140" oninput="checkRefillReveal(4)"></div>
+        <div class="refill-divider" id="d4-r2-divider" style="display:none;">2-Week Refill</div>
+        <div id="d4-r2-dur-wrap" style="display:none;"><div class="dl">2-Week Refill — Est. Duration</div><input type="text" id="d4-refill2-dur" placeholder="e.g. 105 min" oninput="checkRefillReveal(4)"></div>
+        <div id="d4-r2-price-wrap" style="display:none;"><div class="dl">2-Week Refill — Starting Price</div><input type="text" id="d4-refill2-price" placeholder="e.g. $85" oninput="checkRefillReveal(4)"></div>
+        <div class="refill-divider" id="d4-r3-divider" style="display:none;">3-Week Refill</div>
+        <div id="d4-r3-dur-wrap" style="display:none;"><div class="dl">3-Week Refill — Est. Duration</div><input type="text" id="d4-refill3-dur" placeholder="e.g. 115 min"></div>
+        <div id="d4-r3-price-wrap" style="display:none;"><div class="dl">3-Week Refill — Starting Price</div><input type="text" id="d4-refill3-price" placeholder="e.g. $95"></div>
+      </div>
+    </div>
+    <div class="svc-item">
+      <p class="svc-name"><strong>Wispy / Kim K Set</strong> — Textured spikes mixed with volume fans for a wispy, staggered effect.</p>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s5" value="yes" onchange="td('d5',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s5" value="no" onchange="td('d5',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d5">
+        <div><div class="dl">Initial — Est. Duration</div><input type="text" id="d5-init-dur" placeholder="e.g. 120 min" oninput="checkRefillReveal(5)"></div>
+        <div><div class="dl">Initial — Starting Price</div><input type="text" id="d5-init-price" placeholder="e.g. $125" oninput="checkRefillReveal(5)"></div>
+        <div class="refill-divider" id="d5-r2-divider" style="display:none;">2-Week Refill</div>
+        <div id="d5-r2-dur-wrap" style="display:none;"><div class="dl">2-Week Refill — Est. Duration</div><input type="text" id="d5-refill2-dur" placeholder="e.g. 90 min" oninput="checkRefillReveal(5)"></div>
+        <div id="d5-r2-price-wrap" style="display:none;"><div class="dl">2-Week Refill — Starting Price</div><input type="text" id="d5-refill2-price" placeholder="e.g. $75" oninput="checkRefillReveal(5)"></div>
+        <div class="refill-divider" id="d5-r3-divider" style="display:none;">3-Week Refill</div>
+        <div id="d5-r3-dur-wrap" style="display:none;"><div class="dl">3-Week Refill — Est. Duration</div><input type="text" id="d5-refill3-dur" placeholder="e.g. 100 min"></div>
+        <div id="d5-r3-price-wrap" style="display:none;"><div class="dl">3-Week Refill — Starting Price</div><input type="text" id="d5-refill3-price" placeholder="e.g. $85"></div>
+      </div>
+    </div>
+    <div class="svc-item">
+      <p class="svc-name"><strong>Wet Look / Glossy Set</strong> — Extensions styled to mimic a wet, glossy, piecey finish.</p>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s6" value="yes" onchange="td('d6',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s6" value="no" onchange="td('d6',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d6">
+        <div><div class="dl">Initial — Est. Duration</div><input type="text" id="d6-init-dur" placeholder="e.g. 120 min" oninput="checkRefillReveal(6)"></div>
+        <div><div class="dl">Initial — Starting Price</div><input type="text" id="d6-init-price" placeholder="e.g. $120" oninput="checkRefillReveal(6)"></div>
+        <div class="refill-divider" id="d6-r2-divider" style="display:none;">2-Week Refill</div>
+        <div id="d6-r2-dur-wrap" style="display:none;"><div class="dl">2-Week Refill — Est. Duration</div><input type="text" id="d6-refill2-dur" placeholder="e.g. 90 min" oninput="checkRefillReveal(6)"></div>
+        <div id="d6-r2-price-wrap" style="display:none;"><div class="dl">2-Week Refill — Starting Price</div><input type="text" id="d6-refill2-price" placeholder="e.g. $70" oninput="checkRefillReveal(6)"></div>
+        <div class="refill-divider" id="d6-r3-divider" style="display:none;">3-Week Refill</div>
+        <div id="d6-r3-dur-wrap" style="display:none;"><div class="dl">3-Week Refill — Est. Duration</div><input type="text" id="d6-refill3-dur" placeholder="e.g. 100 min"></div>
+        <div id="d6-r3-price-wrap" style="display:none;"><div class="dl">3-Week Refill — Starting Price</div><input type="text" id="d6-refill3-price" placeholder="e.g. $80"></div>
+      </div>
+    </div>
+    <div class="svc-item">
+      <p class="svc-name"><strong>Cat Eye Set</strong> — Length concentrated at the outer corners for a lifted, elongated shape.</p>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s7" value="yes" onchange="td('d7',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s7" value="no" onchange="td('d7',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d7">
+        <div><div class="dl">Initial — Est. Duration</div><input type="text" id="d7-init-dur" placeholder="e.g. 105 min" oninput="checkRefillReveal(7)"></div>
+        <div><div class="dl">Initial — Starting Price</div><input type="text" id="d7-init-price" placeholder="e.g. $110" oninput="checkRefillReveal(7)"></div>
+        <div class="refill-divider" id="d7-r2-divider" style="display:none;">2-Week Refill</div>
+        <div id="d7-r2-dur-wrap" style="display:none;"><div class="dl">2-Week Refill — Est. Duration</div><input type="text" id="d7-refill2-dur" placeholder="e.g. 75 min" oninput="checkRefillReveal(7)"></div>
+        <div id="d7-r2-price-wrap" style="display:none;"><div class="dl">2-Week Refill — Starting Price</div><input type="text" id="d7-refill2-price" placeholder="e.g. $65" oninput="checkRefillReveal(7)"></div>
+        <div class="refill-divider" id="d7-r3-divider" style="display:none;">3-Week Refill</div>
+        <div id="d7-r3-dur-wrap" style="display:none;"><div class="dl">3-Week Refill — Est. Duration</div><input type="text" id="d7-refill3-dur" placeholder="e.g. 90 min"></div>
+        <div id="d7-r3-price-wrap" style="display:none;"><div class="dl">3-Week Refill — Starting Price</div><input type="text" id="d7-refill3-price" placeholder="e.g. $75"></div>
+      </div>
+    </div>
+    <div class="svc-item">
+      <p class="svc-name"><strong>Lash Removal</strong> — Safe removal of existing extensions using adhesive remover.</p>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s8" value="yes" onchange="td('d8',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s8" value="no" onchange="td('d8',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d8"><div><div class="dl">Est. Duration</div><input type="text" id="d8-dur" placeholder="e.g. 30 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d8-price" placeholder="e.g. $25"></div></div>
+    </div>
+    <div class="svc-item">
+      <p class="svc-name"><strong>Lash Lift & Tint</strong> — Semi-permanent curl and tint treatment for natural lashes, no extensions.</p>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s9" value="yes" onchange="td('d9',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s9" value="no" onchange="td('d9',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d9"><div><div class="dl">Est. Duration</div><input type="text" id="d9-dur" placeholder="e.g. 60 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d9-price" placeholder="e.g. $85"></div></div>
+    </div>
+    <div class="svc-item">
+      <p class="svc-name"><strong>Brow Lamination</strong> — Restructuring treatment that sets brow hairs in a lifted, uniform direction.</p>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s10" value="yes" onchange="td('d10',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s10" value="no" onchange="td('d10',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d10"><div><div class="dl">Est. Duration</div><input type="text" id="d10-dur" placeholder="e.g. 45 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d10-price" placeholder="e.g. $75"></div></div>
+    </div>
+    <div class="svc-item">
+      <p class="svc-name"><strong>Brow Tint</strong> — Semi-permanent dye to enhance brow color, depth, and definition.</p>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s11" value="yes" onchange="td('d11',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s11" value="no" onchange="td('d11',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d11"><div><div class="dl">Est. Duration</div><input type="text" id="d11-dur" placeholder="e.g. 20 min"></div><div><div class="dl">Starting Price</div><input type="text" id="d11-price" placeholder="e.g. $25"></div></div>
+    </div>
+    <div class="svc-item">
+      <p class="svc-name"><strong>Lash & Brow Combo</strong> — Any combination of lash and brow services booked together.</p>
+      <div class="yn-row"><label class="yn-opt"><input type="radio" name="s12" value="yes" onchange="td('d12',true)"><span>Yes</span></label><label class="yn-opt"><input type="radio" name="s12" value="no" onchange="td('d12',false)"><span>No</span></label></div>
+      <div class="svc-detail" id="d12"><div><div class="dl">Est. Duration</div><input type="text" id="d12-dur" placeholder="e.g. varies by combo"></div><div><div class="dl">Starting Price</div><input type="text" id="d12-price" placeholder="e.g. see individual services"></div></div>
+    </div>
+
+    <div class="field-group" style="margin-top:20px;">
+      <label class="field-label">Any additional services not listed above?</label>
+      <textarea id="f-extra-services" placeholder="List any other lash or brow services you offer with estimated duration and starting price..." rows="3"></textarea>
+    </div>
+
+
+    <div class="nav-row">
+      <button class="btn-back" onclick="goToStep(2)">← Back</button>
+      <button class="btn-next" onclick="goToStep(4)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: Artist Bio & Profile -->
+  <div class="step" id="step-4">
+    <div class="step-header">
+      <div class="step-tag">Document 07</div>
+      <h1 class="step-title">Artist Bio<br><em>& Profile</em></h1>
+      <p class="step-desc">This is where your personality gets to shine. Your answers will help us craft a booking profile that is equal parts professional and unforgettable.</p>
+    </div>
+    <div class="section-divider"><span>The Basics</span></div>
+
+    <div class="field-group">
+      <label class="field-label">What name do you want displayed on your profile? <span class="req">*</span></label>
+      <p class="field-sub">This can be your full name, first name only, or a professional/brand name.</p>
+      <input type="text" id="f-display-name" placeholder="e.g. Jasmine T. | Lashes by Jas | Jasmine Torres">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What city are you based in or known in?</label>
+      <input type="text" id="f-location" placeholder="e.g. The Woodlands, TX">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">How many years have you been doing lash extensions?</label>
+      <input type="text" id="f-experience" placeholder="e.g. 3 years, just certified, 10+ years">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What got you into lash artistry in the first place?</label>
+      <p class="field-sub">The origin story — this is always compelling to clients.</p>
+      <textarea id="f-origin" placeholder="Tell us how it started..." rows="4"></textarea>
+    </div>
+
+    <div class="section-divider"><span>Your Style &amp; Specialty</span></div>
+
+    <div class="field-group">
+      <label class="field-label">How would you describe your lash style in 3 words?</label>
+      <input type="text" id="f-style-words" placeholder="e.g. Precise, wispy, detailed — or bold, clean, luxurious">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What is your absolute favorite service to perform and why?</label>
+      <textarea id="f-fav-service" placeholder="The service that makes you lose track of time..." rows="3"></textarea>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What sets your work apart from other lash artists?</label>
+      <p class="field-sub">Don't be modest — this goes on your profile.</p>
+      <textarea id="f-differentiator" placeholder="What do clients always compliment or come back for?" rows="3"></textarea>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Describe your dream client in a few sentences.</label>
+      <p class="field-sub">Who do you do your best work for? This helps attract the right people to your chair.</p>
+      <textarea id="f-dream-client" placeholder="e.g. Someone who trusts my judgment on curl and length, books fills every 2–3 weeks, and refers their friends..." rows="3"></textarea>
+    </div>
+
+    <div class="section-divider"><span>Personality &amp; Vibe</span></div>
+
+    <div class="field-group">
+      <label class="field-label">How would your best friend describe you in one sentence?</label>
+      <input type="text" id="f-friend-desc" placeholder="Be honest — the funnier the better">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What is your lash appointment vibe?</label>
+      <p class="field-sub">What can a client expect when they sit in your chair?</p>
+      <div class="radio-group">
+        <label class="radio-option"><input type="radio" name="appt-vibe" value="chatty"><span class="radio-label">Chatty &amp; social — we'll leave as friends</span></label>
+        <label class="radio-option"><input type="radio" name="appt-vibe" value="focused"><span class="radio-label">Focused &amp; calm — your relaxing escape, some clients even nap</span></label>
+        <label class="radio-option"><input type="radio" name="appt-vibe" value="mix"><span class="radio-label">A mix — I read the room and match your energy</span></label>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What is always playing in your earbuds or at your station?</label>
+      <input type="text" id="f-music" placeholder="e.g. R&B, true crime podcasts, lo-fi beats, reggaeton...">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What is a fun or unexpected fact about you that has nothing to do with lashes?</label>
+      <textarea id="f-fun-fact" placeholder="Hobbies, hidden talents, random obsessions — go for it" rows="3"></textarea>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">If your lash style were a celebrity, who would it be?</label>
+      <input type="text" id="f-celebrity" placeholder="e.g. Zendaya — clean, elevated, always unexpected">
+    </div>
+
+    <div class="section-divider"><span>Motivation &amp; Mission</span></div>
+
+    <div class="field-group">
+      <label class="field-label">Why do you do this work? What keeps you going?</label>
+      <p class="field-sub">Beyond money — what is the deeper reason you chose this craft?</p>
+      <textarea id="f-why" placeholder="This is the heart of your bio..." rows="4"></textarea>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">What do you want your clients to feel when they leave your chair?</label>
+      <input type="text" id="f-client-feeling" placeholder="e.g. Confident, seen, pampered, like their best self...">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Where do you see yourself and your lash career in 3 years?</label>
+      <textarea id="f-vision" placeholder="Dream big — this is for your profile story..." rows="3"></textarea>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Share a quote that represents you or your work — personal, professional, or both.</label>
+      <p class="field-sub">A motto, a lyric, something a mentor said, or something you made up yourself.</p>
+      <textarea id="f-quote" placeholder="Your quote here..." rows="2"></textarea>
+    </div>
+
+    <div class="section-divider"><span>Final Profile Details</span></div>
+
+    <div class="field-group">
+      <label class="field-label">Do you have a professional headshot or a photo you love that represents your brand?</label>
+      <div class="radio-group">
+        <label class="radio-option"><input type="radio" name="headshot" value="yes"><span class="radio-label">Yes — I will text or email it to you</span></label>
+        <label class="radio-option"><input type="radio" name="headshot" value="no"><span class="radio-label">No — I need help getting one taken</span></label>
+        <label class="radio-option"><input type="radio" name="headshot" value="soon"><span class="radio-label">Not yet but I'm working on it</span></label>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Do you consent to having your work, name, and likeness featured on Cio Bela's Instagram, TikTok, and website for marketing purposes? <span class="req">*</span></label>
+      <div class="radio-group">
+        <label class="radio-option"><input type="radio" name="social-consent" value="yes"><span class="radio-label">Yes — I consent to being featured on Cio Bela's social media and website</span></label>
+        <label class="radio-option"><input type="radio" name="social-consent" value="no"><span class="radio-label">No — I do not consent at this time</span></label>
+        <label class="radio-option"><input type="radio" name="social-consent" value="partial"><span class="radio-label">Partially — I consent to my work being featured but not my face/name</span></label>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Is there anything else you want people to know about you before they book?</label>
+      <textarea id="f-anything-else" placeholder="Anything that didn't fit anywhere else — have at it..." rows="4"></textarea>
+    </div>
+
+    
+    <div class="nav-row">
+      <button class="btn-back" onclick="goToStep(3)">← Back</button>
+      <button class="btn-next" onclick="goToStep(5)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 5: Signature -->
+  <div class="step" id="step-5">
+    <div class="step-header">
+      <div class="step-tag">Final Step</div>
+      <h1 class="step-title">Electronic<br><em>Signature</em></h1>
+      <p class="step-desc">Almost there. Sign below to complete your legal agreements and submit your artist profile.</p>
+    </div>
+
+    <div class="legal-statement">
+      By signing below, I, the undersigned, hereby certify and attest to the following under penalty of perjury:<br><br>
+      <strong>1.</strong> All information provided in this document is true, accurate, and complete to the best of my knowledge.<br><br>
+      <strong>2.</strong> I have read, understood, and agree to be legally bound by all documents, policies, and acknowledgments contained within this packet, including but not limited to: the Shared Lash Station Agreement, the Daily Stewardship Checklist, the Texas Safety &amp; Compliance Protocols, the 1099 Independent Contractor Tax Acknowledgment, and the Liability Waiver &amp; Insurance Requirement.<br><br>
+      <strong>3.</strong> I understand that this electronic signature constitutes a legally binding signature equivalent to a handwritten signature under the Electronic Signatures in Global and National Commerce Act (E-SIGN Act) and the Texas Uniform Electronic Transactions Act (TUETA).<br><br>
+      <strong>4.</strong> I acknowledge that Cio Bela Salons reserves the right to terminate this agreement if any information provided is found to be false or if I fail to uphold the standards set forth in this document.<br><br>
+      <strong>5.</strong> I am entering into this agreement of my own free will and confirm that I am of legal age to enter into a binding contract.
+    </div>
+
+    <div class="sig-block">
+      <div class="sig-title">Your Signature</div>
+      <div class="sig-desc">Please sign in the box below using your finger or mouse. This serves as your legally binding electronic signature confirming your agreement to all terms contained in this document.</div>
+      <div class="sig-canvas-wrap">
+        <canvas id="sig-canvas"></canvas>
+      </div>
+      <button class="sig-clear" onclick="clearSig()">✕ Clear signature</button>
+      <div class="sig-fields">
+        <div class="field-group">
+          <label class="field-label">Full Legal Name <span class="req">*</span></label>
+          <input type="text" id="sig-name" placeholder="Type your full legal name">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Date</label>
+          <input type="text" id="sig-date" placeholder="Auto-filled on submit" readonly style="background:#F5F0E8;color:var(--warm-mid);">
+        </div>
+      </div>
+      <div class="sig-date" id="sig-timestamp"></div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn-back" onclick="goToStep(4)">← Back</button>
+      <button class="btn-submit" onclick="submitForm()">Submit & Sign ✓</button>
+    </div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="success">
+    <div class="success-icon">✓</div>
+    <h2 class="success-title">All Caught Up —<br><em>thank you!</em></h2>
+    <p class="success-desc">Your legal agreements and artist profile have been submitted, and your signed PDF has been downloaded to your device.</p>
+    <p class="success-desc" style="margin-top:16px; color:var(--ink); font-size:12.5px; background:var(--gold-light); border:1px solid var(--rule); padding:16px; text-align:left; line-height:1.8;">
+      <strong style="font-family:'Cormorant Garamond',serif; font-size:15px; display:block; margin-bottom:6px;">One last step —</strong>
+      Please text the PDF that just downloaded to <strong>832-229-3155</strong> so we have everything on file.
+    </p>
+  </div>
+
+</div>
+
+<script>
+  const TOTAL_STEPS = 5;
+  const stepNames = ['General Information','Legal Agreements','Services & Pricing','Artist Bio & Profile','Signature'];
+
+  function goToStep(n) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('step-' + n).classList.add('active');
+    document.getElementById('progress-fill').style.width = ((n / TOTAL_STEPS) * 100) + '%';
+    document.getElementById('step-label').textContent = 'Step ' + n + ' of ' + TOTAL_STEPS;
+    document.getElementById('step-name').textContent = stepNames[n - 1];
+    for (let i = 1; i <= TOTAL_STEPS; i++) {
+      const d = document.getElementById('dot-' + i);
+      d.className = 'progress-dot';
+      if (i < n) d.classList.add('done');
+      if (i === n) d.classList.add('active');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (n === TOTAL_STEPS) setTimeout(initSig, 150);
+  }
+
+  let sigCanvas, sigCtx, sigDrawing = false, sigHasSig = false;
+
+  function initSig() {
+    sigCanvas = document.getElementById('sig-canvas');
+    if (!sigCanvas) return;
+    sigCtx = sigCanvas.getContext('2d');
+    sigCanvas.width = sigCanvas.offsetWidth;
+    sigCanvas.height = 140;
+    sigCtx.strokeStyle = '#1A1714';
+    sigCtx.lineWidth = 2;
+    sigCtx.lineCap = 'round';
+    sigCtx.lineJoin = 'round';
+
+    function getPos(e) {
+      const rect = sigCanvas.getBoundingClientRect();
+      const clientX = e.clientX !== undefined ? e.clientX : e.touches[0].clientX;
+      const clientY = e.clientY !== undefined ? e.clientY : e.touches[0].clientY;
+      return { x: clientX - rect.left, y: clientY - rect.top };
+    }
+
+    sigCanvas.addEventListener('mousedown', e => { sigDrawing = true; sigCtx.beginPath(); const p = getPos(e); sigCtx.moveTo(p.x, p.y); });
+    sigCanvas.addEventListener('mousemove', e => { if (!sigDrawing) return; const p = getPos(e); sigCtx.lineTo(p.x, p.y); sigCtx.stroke(); sigHasSig = true; });
+    sigCanvas.addEventListener('mouseup', () => sigDrawing = false);
+    sigCanvas.addEventListener('mouseleave', () => sigDrawing = false);
+    sigCanvas.addEventListener('touchstart', e => { e.preventDefault(); sigDrawing = true; sigCtx.beginPath(); const p = getPos(e); sigCtx.moveTo(p.x, p.y); }, { passive: false });
+    sigCanvas.addEventListener('touchmove', e => { e.preventDefault(); if (!sigDrawing) return; const p = getPos(e); sigCtx.lineTo(p.x, p.y); sigCtx.stroke(); sigHasSig = true; }, { passive: false });
+    sigCanvas.addEventListener('touchend', () => sigDrawing = false);
+
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+    document.getElementById('sig-date').value = dateStr;
+    document.getElementById('sig-timestamp').textContent = 'Signed on ' + dateStr + ' at ' + timeStr;
+  }
+
+  function clearSig() {
+    if (sigCtx) sigCtx.clearRect(0, 0, sigCanvas.width, sigCanvas.height);
+    sigHasSig = false;
+  }
+
+  function td(id, show) {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('show', show);
+  }
+
+  function checkRefillReveal(i) {
+    const initDur = document.getElementById('d'+i+'-init-dur');
+    const initPrice = document.getElementById('d'+i+'-init-price');
+    const r2Divider = document.getElementById('d'+i+'-r2-divider');
+    const r2DurWrap = document.getElementById('d'+i+'-r2-dur-wrap');
+    const r2PriceWrap = document.getElementById('d'+i+'-r2-price-wrap');
+    const r3Divider = document.getElementById('d'+i+'-r3-divider');
+    const r3DurWrap = document.getElementById('d'+i+'-r3-dur-wrap');
+    const r3PriceWrap = document.getElementById('d'+i+'-r3-price-wrap');
+    if (!initDur || !initPrice) return;
+
+    const initFilled = initDur.value.trim() && initPrice.value.trim();
+    [r2Divider, r2DurWrap, r2PriceWrap].forEach(el => { if (el) el.style.display = initFilled ? '' : 'none'; });
+
+    const r2Dur = document.getElementById('d'+i+'-refill2-dur');
+    const r2Price = document.getElementById('d'+i+'-refill2-price');
+    const refill2Filled = initFilled && r2Dur && r2Price && r2Dur.value.trim() && r2Price.value.trim();
+    [r3Divider, r3DurWrap, r3PriceWrap].forEach(el => { if (el) el.style.display = refill2Filled ? '' : 'none'; });
+  }
+
+  function gv(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
+  function gr(name) { const el = document.querySelector('input[name="'+name+'"]:checked'); return el ? el.value : ''; }
+
+  async function submitForm() {
+    const sigName = gv('sig-name');
+    if (!sigName) { alert('Please type your full legal name to complete your signature.'); return; }
+    if (!sigHasSig) { alert('Please sign in the signature box before submitting.'); return; }
+    const requiredChecks = ['agree-space','agree-checklist','agree-compliance','agree-tax','agree-liability'];
+    for (const id of requiredChecks) {
+      if (!document.getElementById(id).checked) {
+        alert('Please check all five legal agreement boxes in Step 2 before submitting.');
+        return;
+      }
+    }
+
+    const btn = document.querySelector('.btn-submit');
+    btn.textContent = 'Generating PDF...';
+    btn.disabled = true;
+
+    const sigImage = sigCanvas.toDataURL('image/png');
+    const sigDate = gv('sig-date');
+
+    try {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+      const W = 210, M = 18, CW = W - M * 2;
+      let y = 20;
+      const gold = [201,169,110], ink = [26,23,20], mid = [140,123,104];
+
+      function checkPage(n=12) { if (y+n>275) { doc.addPage(); y=20; } }
+      function heading(t) {
+        checkPage(16);
+        doc.setFontSize(7); doc.setTextColor(...gold); doc.setFont('helvetica','normal');
+        doc.text(t.toUpperCase(), M, y); y+=3;
+        doc.setDrawColor(...gold); doc.setLineWidth(0.3); doc.line(M,y,W-M,y); y+=6;
+      }
+      function field(label, val) {
+        if (!val || !val.toString().trim()) return;
+        checkPage(14);
+        doc.setFontSize(7); doc.setTextColor(...mid); doc.setFont('helvetica','normal');
+        doc.text(label.toUpperCase(), M, y); y+=4;
+        doc.setFontSize(9); doc.setTextColor(...ink);
+        doc.splitTextToSize(val.toString(), CW).forEach(l => { checkPage(6); doc.text(l,M,y); y+=5; }); y+=2;
+      }
+      function badge(label, val) {
+        checkPage(10);
+        doc.setFontSize(7); doc.setTextColor(...mid); doc.setFont('helvetica','normal');
+        doc.text(label.toUpperCase(), M, y); y+=4;
+        doc.setFontSize(8);
+        doc.setTextColor(...(val.includes('Agreed') ? [40,120,60] : [180,40,40]));
+        doc.text(val, M, y); y+=7;
+      }
+
+      doc.setFillColor(...gold); doc.rect(0,0,W,8,'F');
+      doc.setFontSize(7); doc.setTextColor(255,255,255); doc.setFont('helvetica','normal');
+      doc.text('CIO BELA SALONS  —  LASH ARTIST LEGAL & PROFILE CATCH-UP', M, 5.5);
+      y=24;
+      doc.setFontSize(20); doc.setTextColor(...ink); doc.setFont('helvetica','bold');
+      doc.text('Legal Agreements & Artist Profile', M, y); y+=8;
+      doc.setFontSize(9); doc.setTextColor(...mid); doc.setFont('helvetica','normal');
+      doc.text('Electronically signed on ' + sigDate, M, y); y+=12;
+
+      heading('Section 1 — General Information');
+      field('Full Name', gv('f-fullname'));
+      field('Email Address', gv('f-email'));
+
+      heading('Section 2 — Legal Agreements');
+      badge('Shared Lash Station Agreement', document.getElementById('agree-space').checked ? 'Agreed' : 'Not agreed');
+      badge('Daily Stewardship Checklist', document.getElementById('agree-checklist').checked ? 'Agreed' : 'Not agreed');
+      badge('Texas Safety & Compliance Protocols', document.getElementById('agree-compliance').checked ? 'Agreed' : 'Not agreed');
+      badge('1099 Tax Acknowledgment', document.getElementById('agree-tax').checked ? 'Agreed' : 'Not agreed');
+      badge('Liability Waiver & Insurance Requirement', document.getElementById('agree-liability').checked ? 'Agreed' : 'Not agreed');
+
+      heading('Section 3 — Services & Pricing');
+      const setStyles = [
+        ['s1','Classic Full Set'],['s2','Hybrid Full Set'],['s3','Volume Full Set'],['s4','Mega Volume Full Set'],
+        ['s5','Wispy / Kim K Set'],['s6','Wet Look / Glossy Set'],['s7','Cat Eye Set']
+      ];
+      const oneTimeServices = [
+        ['s8','Lash Removal'],['s9','Lash Lift & Tint'],['s10','Brow Lamination'],['s11','Brow Tint'],['s12','Lash & Brow Combo']
+      ];
+      setStyles.forEach(function(pair) {
+        const key = pair[0], name = pair[1];
+        const offering = gr(key);
+        const num = key.replace('s','');
+        if (offering === 'yes') {
+          let val = 'Offering this service';
+          const iDur = gv('d'+num+'-init-dur'), iPrice = gv('d'+num+'-init-price');
+          const r2Dur = gv('d'+num+'-refill2-dur'), r2Price = gv('d'+num+'-refill2-price');
+          const r3Dur = gv('d'+num+'-refill3-dur'), r3Price = gv('d'+num+'-refill3-price');
+          val += '\n  Initial: ' + (iDur||'not specified') + ' / ' + (iPrice||'not specified');
+          if (r2Dur || r2Price) val += '\n  2-Week Refill: ' + (r2Dur||'not specified') + ' / ' + (r2Price||'not specified');
+          if (r3Dur || r3Price) val += '\n  3-Week Refill: ' + (r3Dur||'not specified') + ' / ' + (r3Price||'not specified');
+          field(name, val);
+        } else if (offering === 'no') {
+          field(name, 'Not offering');
+        }
+      });
+      oneTimeServices.forEach(function(pair) {
+        const key = pair[0], name = pair[1];
+        const offering = gr(key);
+        const num = key.replace('s','');
+        if (offering === 'yes') {
+          const dur = gv('d'+num+'-dur');
+          const price = gv('d'+num+'-price');
+          let val = 'Offering this service';
+          if (dur || price) val += '\n  Duration: ' + (dur||'not specified') + '  |  Starting Price: ' + (price||'not specified');
+          field(name, val);
+        } else if (offering === 'no') {
+          field(name, 'Not offering');
+        }
+      });
+      field('Additional Services', gv('f-extra-services'));
+
+      heading('Section 4 — Artist Bio & Profile');
+      field('Display Name', gv('f-display-name'));
+      field('City / Location', gv('f-location'));
+      field('Years of Experience', gv('f-experience'));
+      field('Origin Story', gv('f-origin'));
+      field('Style in 3 Words', gv('f-style-words'));
+      field('Favorite Service', gv('f-fav-service'));
+      field('What Sets You Apart', gv('f-differentiator'));
+      field('Dream Client', gv('f-dream-client'));
+      field('Best Friend Description', gv('f-friend-desc'));
+      field('Appointment Vibe', gr('appt-vibe'));
+      field('Music / Podcast Preference', gv('f-music'));
+      field('Fun Fact', gv('f-fun-fact'));
+      field('Celebrity Style Match', gv('f-celebrity'));
+      field('Why This Work', gv('f-why'));
+      field('Desired Client Feeling', gv('f-client-feeling'));
+      field('3-Year Vision', gv('f-vision'));
+      field('Personal Quote', gv('f-quote'));
+      field('Headshot Status', gr('headshot'));
+      field('Social Media Consent', gr('social-consent'));
+      field('Additional Notes', gv('f-anything-else'));
+
+      doc.addPage(); y=20;
+      doc.setFillColor(...gold); doc.rect(0,0,W,8,'F');
+      doc.setFontSize(7); doc.setTextColor(255,255,255);
+      doc.text('CIO BELA SALONS  —  ELECTRONIC SIGNATURE PAGE', M, 5.5);
+      y=24;
+      doc.setFontSize(14); doc.setTextColor(...ink); doc.setFont('helvetica','bold');
+      doc.text('Electronic Signature & Legal Certification', M, y); y+=10;
+      doc.setFontSize(8); doc.setTextColor(...ink); doc.setFont('helvetica','normal');
+      const legal='By signing below, the undersigned certifies that all information provided is true and accurate, and that they have read, understood, and agree to be legally bound by all policies in this document, including the Shared Lash Station Agreement, the Daily Stewardship Checklist, the Texas Safety & Compliance Protocols, the 1099 Independent Contractor Tax Acknowledgment, and the Liability Waiver & Insurance Requirement. This electronic signature is legally binding under the E-SIGN Act and the Texas Uniform Electronic Transactions Act (TUETA).';
+      doc.splitTextToSize(legal, CW).forEach(l => { doc.text(l,M,y); y+=5; }); y+=8;
+      doc.setFontSize(7); doc.setTextColor(...mid); doc.text('SIGNATURE', M, y); y+=4;
+      doc.setDrawColor(...mid); doc.setLineWidth(0.3); doc.rect(M,y,CW,36);
+      try { doc.addImage(sigImage,'PNG',M+2,y+2,CW-4,32); } catch(e) {}
+      y+=42;
+      doc.setFontSize(7); doc.setTextColor(...mid);
+      doc.text('FULL LEGAL NAME', M, y); y+=4;
+      doc.setFontSize(12); doc.setTextColor(...ink); doc.setFont('helvetica','bold');
+      doc.text(sigName, M, y); y+=8;
+      doc.setFontSize(7); doc.setTextColor(...mid); doc.setFont('helvetica','normal');
+      doc.text('DATE OF SIGNING', M, y); y+=4;
+      doc.setFontSize(9); doc.setTextColor(...ink);
+      doc.text(sigDate, M, y);
+
+      const pc = doc.internal.getNumberOfPages();
+      for (let i=1; i<=pc; i++) {
+        doc.setPage(i);
+        doc.setFillColor(245,240,232); doc.rect(0,287,W,10,'F');
+        doc.setFontSize(6); doc.setTextColor(...mid);
+        doc.text('Cio Bela Salons  —  Confidential Lash Artist Catch-Up Document', M, 292);
+        doc.text('Page ' + i + ' of ' + pc, W-M, 292, { align: 'right' });
+      }
+
+      doc.save('CioBela-LashArtist-LegalAndProfile-' + sigName.replace(/\s+/g,'-') + '.pdf');
+    } catch (err) {
+      console.error('PDF error:', err);
+      alert('PDF generation failed: ' + err.message);
+      btn.textContent = 'Submit & Sign ✓'; btn.disabled = false;
+      return;
+    }
+
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('progress-wrap').style.display = 'none';
+    document.getElementById('success').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
