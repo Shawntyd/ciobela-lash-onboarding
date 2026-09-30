@@ -109,6 +109,11 @@
   }
   .btn-submit:hover { background: var(--ink); border-color: var(--ink); color: var(--gold); }
   .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+  .btn-hub {
+    display: inline-block; margin-top: 24px; padding: 14px 28px;
+    background: var(--ink); color: var(--cream); text-decoration: none;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  }
 
   .success-screen { display: none; text-align: center; padding: 60px 20px; }
   .success-screen.active { display: block; animation: rise 0.6s ease forwards; }
@@ -273,6 +278,7 @@
       <strong style="font-family:'Cormorant Garamond',serif; font-size:15px; display:block; margin-bottom:6px;">One last step —</strong>
       Please text the PDF that just downloaded to <strong>832-229-3155</strong> so we have it on file.
     </div>
+    <a class="btn-hub" href="#" onclick="returnToHub(); return false;">← Return to Onboarding Checklist</a>
   </div>
 
 </div>
@@ -308,6 +314,19 @@
   });
 
   function clearSig() { if(sigCtx) sigCtx.clearRect(0,0,sigCanvas.width,sigCanvas.height); sigHasSig = false; }
+
+  var incomingEmail = '';
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    incomingEmail = params.get('email') || '';
+  })();
+
+  function returnToHub() {
+    var url = 'https://shawntyd.github.io/ciobela-lash-onboarding/cio-bela-lash-hub.html';
+    if (incomingEmail) url += '?email=' + encodeURIComponent(incomingEmail) + '&completed=legal';
+    window.location.href = url;
+  }
+
   function gv(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
 
   function submitForm() {
