@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cio Bela — Lash Artist Legal & Profile Catch-Up</title>
+<title>Cio Bela — Lash Artist Legal Agreements & Profile</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
@@ -249,9 +249,9 @@
   <!-- STEP 1: General Information -->
   <div class="step active" id="step-1">
     <div class="step-header">
-      <div class="step-tag">Lash Artist Catch-Up</div>
+      <div class="step-tag">Lash Artist Onboarding</div>
       <h1 class="step-title">General<br><em>Information</em></h1>
-      <p class="step-desc">Let's start with the basics. This one link covers everything you missed at onboarding, plus your artist profile — all in one go.</p>
+      <p class="step-desc">Let's start with the basics. This link covers your legal agreements and your artist profile — all in one go.</p>
     </div>
     <div class="field-group">
       <label class="field-label">Full Legal Name <span class="req">*</span></label>
@@ -763,7 +763,7 @@
   <!-- SUCCESS -->
   <div class="success-screen" id="success">
     <div class="success-icon">✓</div>
-    <h2 class="success-title">All Caught Up —<br><em>thank you!</em></h2>
+    <h2 class="success-title">Agreements Signed —<br><em>thank you!</em></h2>
     <p class="success-desc">Your legal agreements and artist profile have been submitted, and your signed PDF has been downloaded to your device.</p>
     <p class="success-desc" style="margin-top:16px; color:var(--ink); font-size:12.5px; background:var(--gold-light); border:1px solid var(--rule); padding:16px; text-align:left; line-height:1.8;">
       <strong style="font-family:'Cormorant Garamond',serif; font-size:15px; display:block; margin-bottom:6px;">One last step —</strong>
@@ -913,7 +913,7 @@
 
       doc.setFillColor(...gold); doc.rect(0,0,W,8,'F');
       doc.setFontSize(7); doc.setTextColor(255,255,255); doc.setFont('helvetica','normal');
-      doc.text('CIO BELA SALONS  —  LASH ARTIST LEGAL & PROFILE CATCH-UP', M, 5.5);
+      doc.text('CIO BELA SALONS  —  LASH ARTIST LEGAL AGREEMENTS & PROFILE', M, 5.5);
       y=24;
       doc.setFontSize(20); doc.setTextColor(...ink); doc.setFont('helvetica','bold');
       doc.text('Legal Agreements & Artist Profile', M, y); y+=8;
@@ -1022,7 +1022,7 @@
         doc.setPage(i);
         doc.setFillColor(245,240,232); doc.rect(0,287,W,10,'F');
         doc.setFontSize(6); doc.setTextColor(...mid);
-        doc.text('Cio Bela Salons  —  Confidential Lash Artist Catch-Up Document', M, 292);
+        doc.text('Cio Bela Salons  —  Confidential Lash Artist Document', M, 292);
         doc.text('Page ' + i + ' of ' + pc, W-M, 292, { align: 'right' });
       }
 
