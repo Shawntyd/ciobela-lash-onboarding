@@ -403,7 +403,7 @@
       <strong style="font-family:'Cormorant Garamond',serif; font-size:15px; display:block; margin-bottom:6px;">One last step —</strong>
       Please text the PDF that just downloaded, along with your headshot and work photos, to <strong>832-229-3155</strong> so we have everything on file.
     </div>
-    <a class="btn-hub" href="https://shawntyd.github.io/ciobela-lash-onboarding/cio-bela-lash-hub.html">← Return to Onboarding Checklist</a>
+    <a class="btn-hub" href="#" onclick="returnToHub(); return false;">← Return to Onboarding Checklist</a>
   </div>
 
 </div>
@@ -439,6 +439,19 @@
   });
 
   function clearSig() { if(sigCtx) sigCtx.clearRect(0,0,sigCanvas.width,sigCanvas.height); sigHasSig = false; }
+
+  var incomingEmail = '';
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    incomingEmail = params.get('email') || '';
+  })();
+
+  function returnToHub() {
+    var url = 'https://shawntyd.github.io/ciobela-lash-onboarding/cio-bela-lash-hub.html';
+    if (incomingEmail) url += '?email=' + encodeURIComponent(incomingEmail) + '&completed=bio';
+    window.location.href = url;
+  }
+
   function gv(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
   function gr(name) { const el = document.querySelector('input[name="'+name+'"]:checked'); return el ? el.value : ''; }
   function td(id, show) { const el = document.getElementById(id); if (el) el.classList.toggle('show', show); }
