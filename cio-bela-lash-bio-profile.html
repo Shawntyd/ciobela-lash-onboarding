@@ -119,6 +119,27 @@
   .dl { font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm-mid); margin-bottom: 4px; }
   @media (max-width: 480px) { .svc-detail { grid-template-columns: 1fr; } }
 
+  .upload-box {
+    border: 2px dashed rgba(138,123,104,0.35); background: var(--white);
+    padding: 24px; text-align: center; cursor: pointer; transition: border-color 0.2s;
+    margin-bottom: 12px;
+  }
+  .upload-box:hover { border-color: var(--gold); }
+  .upload-box input[type="file"] { display: none; }
+  .upload-label { font-size: 11.5px; color: var(--ink); margin-bottom: 4px; }
+  .upload-sub { font-size: 10px; color: var(--warm-mid); }
+  .upload-preview-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 8px; margin-top: 12px;
+  }
+  .upload-preview-item { position: relative; aspect-ratio: 1; overflow: hidden; border: 1px solid var(--rule); }
+  .upload-preview-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .upload-preview-item .remove-btn {
+    position: absolute; top: 2px; right: 2px; width: 18px; height: 18px;
+    background: rgba(26,23,20,0.75); color: #fff; border: none; border-radius: 50%;
+    font-size: 11px; cursor: pointer; line-height: 1; display: flex; align-items: center; justify-content: center;
+  }
+
   .success-screen { display: none; text-align: center; padding: 60px 20px; }
   .success-screen.active { display: block; animation: rise 0.6s ease forwards; }
   @keyframes rise { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
@@ -349,6 +370,29 @@
       <textarea id="f-quote" placeholder="Your quote here..." rows="2"></textarea>
     </div>
 
+    <div class="section-divider"><span>Photos</span></div>
+    <p class="field-sub" style="margin-bottom:16px;">Upload a headshot and a few of your best work photos. These will be included in your submitted PDF for the team to use on your profile.</p>
+
+    <div class="field-group">
+      <label class="field-label">Professional Headshot</label>
+      <div class="upload-box" onclick="document.getElementById('headshot-input').click()">
+        <div class="upload-label">Tap to upload your headshot</div>
+        <div class="upload-sub">JPG or PNG, one photo</div>
+        <input type="file" id="headshot-input" accept="image/*">
+      </div>
+      <div class="upload-preview-grid" id="headshot-preview"></div>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Work Photos <span style="font-weight:400;text-transform:none;letter-spacing:0;">(up to 8)</span></label>
+      <div class="upload-box" onclick="document.getElementById('work-input').click()">
+        <div class="upload-label">Tap to upload photos of your work</div>
+        <div class="upload-sub">JPG or PNG, select multiple at once</div>
+        <input type="file" id="work-input" accept="image/*" multiple>
+      </div>
+      <div class="upload-preview-grid" id="work-preview"></div>
+    </div>
+
     <div class="section-divider"><span>Final Profile Details</span></div>
 
     <div class="field-group">
@@ -437,6 +481,60 @@
     document.getElementById('sig-date').value = dateStr;
     document.getElementById('sig-timestamp').textContent = 'Signed on ' + dateStr + ' at ' + timeStr;
   });
+
+  // ── PHOTO UPLOADS (embedded directly in PDF, no external storage) ──
+  var headshotDataUrl = null;
+  var workDataUrls = [];
+
+  document.getElementById('headshot-input').addEventListener('change', function(e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+      headshotDataUrl = ev.target.result;
+      document.getElementById('headshot-preview').innerHTML =
+        '<div class="upload-preview-item"><img src="' + ev.target.result + '"><button type="button" class="remove-btn" onclick="removeHeadshot(event)">&times;</button></div>';
+    };
+    reader.readAsDataURL(file);
+  });
+
+  function removeHeadshot(e) {
+    e.stopPropagation();
+    headshotDataUrl = null;
+    document.getElementById('headshot-preview').innerHTML = '';
+    document.getElementById('headshot-input').value = '';
+  }
+
+  document.getElementById('work-input').addEventListener('change', function(e) {
+    var files = Array.from(e.target.files || []);
+    if (workDataUrls.length + files.length > 8) {
+      alert('You can upload up to 8 work photos total.');
+      files = files.slice(0, 8 - workDataUrls.length);
+    }
+    files.forEach(function(file) {
+      var reader = new FileReader();
+      reader.onload = function(ev) {
+        var idx = workDataUrls.length;
+        workDataUrls.push(ev.target.result);
+        var grid = document.getElementById('work-preview');
+        var div = document.createElement('div');
+        div.className = 'upload-preview-item';
+        div.dataset.idx = idx;
+        div.innerHTML = '<img src="' + ev.target.result + '"><button type="button" class="remove-btn" onclick="removeWorkPhoto(event, ' + idx + ')">&times;</button>';
+        grid.appendChild(div);
+      };
+      reader.readAsDataURL(file);
+    });
+    e.target.value = '';
+  });
+
+  function removeWorkPhoto(e, idx) {
+    e.stopPropagation();
+    workDataUrls[idx] = null;
+    var grid = document.getElementById('work-preview');
+    var item = grid.querySelector('[data-idx="' + idx + '"]');
+    if (item) item.remove();
+  }
 
   function clearSig() { if(sigCtx) sigCtx.clearRect(0,0,sigCanvas.width,sigCanvas.height); sigHasSig = false; }
   function gv(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
@@ -563,6 +661,30 @@
       doc.setFontSize(7); doc.setTextColor(...mid); doc.setFont('helvetica','normal');
       doc.text('DATE OF SIGNING', M, y); y+=4;
       doc.setFontSize(9); doc.setTextColor(...ink); doc.text(sigDate, M, y);
+
+      // ── PDF: PHOTOS ──
+      function addImagePage(title, dataUrl) {
+        if (!dataUrl) return;
+        doc.addPage(); 
+        var py = 20;
+        doc.setFillColor(...gold); doc.rect(0,0,W,8,'F');
+        doc.setFontSize(7); doc.setTextColor(255,255,255); doc.setFont('helvetica','normal');
+        doc.text('CIO BELA SALONS  —  ARTIST PHOTOS', M, 5.5);
+        doc.setFontSize(12); doc.setTextColor(...ink); doc.setFont('helvetica','bold');
+        doc.text(title, M, py); py += 8;
+        try {
+          var imgProps = doc.getImageProperties(dataUrl);
+          var maxW = CW, maxH = 240;
+          var ratio = Math.min(maxW / imgProps.width, maxH / imgProps.height);
+          var w = imgProps.width * ratio, h = imgProps.height * ratio;
+          doc.addImage(dataUrl, M, py, w, h);
+        } catch (e) { console.error('Image embed failed:', e); }
+      }
+
+      if (headshotDataUrl) addImagePage('Professional Headshot', headshotDataUrl);
+      workDataUrls.filter(function(u){ return u; }).forEach(function(url, i) {
+        addImagePage('Work Photo ' + (i+1), url);
+      });
 
       const pc = doc.internal.getNumberOfPages();
       for (let i=1;i<=pc;i++){
